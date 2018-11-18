@@ -1,7 +1,7 @@
 const config = require("./botconfig")
 const Discord = require("discord.js");
 
-const bot = new Discord.Client({disableEverybody: true}
+const bot = new Discord.Client({disableEverybody: true})
 
 bot.on(`guildMemberAdd`, member => {
   console.log(`User ` + member.user.username + ` has joined`)
