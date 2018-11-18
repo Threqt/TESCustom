@@ -44,7 +44,8 @@ bot.on("message", async message => {
 
   if(cmd === `${prefix}serverinfo`){
     let sicon = message.guild.iconURL
-    let online = message.guild.members.filter(m => m.presence.status !== 'offline').size
+    let online = message.guild.memberCount.filter(m => m.presence.status !== 'offline').size
+    let categories = message.guild.channels.filter(m => m.type === 'category').size
     let embed2 = new Discord.RichEmbed()
     .setAuthor("TES Bot", bot.user.avatarURL)
     .setThumbnail(sicon)
@@ -53,6 +54,7 @@ bot.on("message", async message => {
     .addField("Join Date", message.guild.joinedAt, true)
     .addField("Roles", message.guild.roles.size, true)
     .addField("Channels", message.guild.channels.size, true)
+    .addField("Categories", categories)
     .addField("Region", message.guild.region, true)
     .addField("Total Members", message.guild.memberCount, true)
     .addField("Online Members", online);
