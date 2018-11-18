@@ -19,7 +19,7 @@ bot.on("message", async message => {
   if(message.channel.type === "dm") return;
 
   let prefix = botconfig.prefix
-  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+  const args = message.content.slice(botconfig.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
 
   if(cmd === `${prefix}ping`){
