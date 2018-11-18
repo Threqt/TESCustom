@@ -19,8 +19,9 @@ bot.on("message", async message => {
   if(message.channel.type === "dm") return;
 
   let prefix = botconfig.prefix
-  const args = message.content.slice(botconfig.prefix.length).trim().split(/ +/g);
-  const cmd = args.shift().toLowerCase();
+  let messageArray = message.content.split(" ");
+  let cmd = messageArray[0];
+  let args = messageArray.slice(1);
 
   if(cmd === `${prefix}ping`){
     return message.channel.send("pong");
@@ -62,6 +63,9 @@ bot.on("message", async message => {
     return message.channel.send(embed2)
   }
 
+  if(cmd === `${prefix}report`){
+    let rUser =
+  }
 });
 
 
