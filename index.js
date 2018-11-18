@@ -55,7 +55,7 @@ bot.on("message", async message => {
     .addField("Categories", message.guild.categories.size)
     .addField("Total Members", message.guild.memberCount);
 
-    return message.channel.send(embed2)
+    return message.channel.send(embed2);
   }
 });
 
