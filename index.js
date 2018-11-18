@@ -55,7 +55,7 @@ bot.on("message", async message => {
     .addField("Channels", message.guild.channels.size, true)
     .addField("Region", message.guild.region, true)
     .addField("Total Members", message.guild.memberCount, true);
-    .addField("Online Members", onlinemembers);
+    .addField("Online Members", onlinemembers.size);
     
     return message.channel.send(embed2)
   }
