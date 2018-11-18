@@ -63,9 +63,7 @@ bot.on("message", async message => {
     return message.channel.send(embed2)
   }
 
-  if(cmd === `${prefix}report`){
-    let rUser =
-  }
+
 });
 
 
