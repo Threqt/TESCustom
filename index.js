@@ -43,11 +43,17 @@ bot.on("message", async message => {
   }
 
   if(cmd === `${prefix}serverinfo`){
-    let sicon = message.guild.displayAvatarURL
+    let sicon = message.guild.iconURL
     let embed2 = new Discord.RichEmbed()
     .setAuthor("TES Bot", bot.user.avatarURL)
     .setThumbnail(sicon)
-    .addField("Created By", "xxShadow<3#5774", true)
+    .addField("Created By", message.guild.owner, true)
+    .addField("Created At", message.guild.createdAt, true)
+    .addField("You Joined At", message.guild.joindAt, true)
+    .addField("Number of Roles", message.guild.roles.size, true)
+    .addField("Number of Channels", message.guild.channels.size, true)
+    .addField("Number of Online Members", message.guild.membersCount, true)
+    .addField("Region", message.guild.region, true);
 
     return message.channel.send(embed2)
   }
