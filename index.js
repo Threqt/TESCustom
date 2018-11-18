@@ -47,14 +47,13 @@ bot.on("message", async message => {
     let embed2 = new Discord.RichEmbed()
     .setAuthor("TES Bot", bot.user.avatarURL)
     .setThumbnail(sicon)
-    .addField("Owner", message.guild.owner)
+    .addField("Owner", message.guild.ownerId)
     .addField("Created", message.guild.createdAt)
     .addField("Join Date", message.guild.joinedAt)
     .addField("Roles", message.guild.roles.size)
     .addField("Channels", message.guild.channels.size)
     .addField("Categories", message.guild.categories.size)
-    .addField("Total Members", message.guild.memberCount)
-    .addField("Region", message.guild.region);
+    .addField("Total Members", message.guild.memberCount);
 
     return message.channel.send(embed2)
   }
