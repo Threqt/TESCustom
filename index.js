@@ -19,10 +19,9 @@ bot.on("message", async message => {
   if(message.channel.type === "dm") return;
 
   let prefix = botconfig.prefix
-  let messageArray = message.content.split(" ");
-  let cmd = messageArray[0];
-  let args = messageArray.slice(1);
-
+  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+  const command = args.shift().toLowerCase();
+  
   if(cmd === `${prefix}ping`){
     return message.channel.send("pong");
   }
@@ -57,9 +56,14 @@ bot.on("message", async message => {
     .addField("Categories", categories, true)
     .addField("Region", message.guild.region, true)
     .addField("Total Members", message.guild.memberCount, true)
-    .addField("Online Members", online, true);
+    .addField("Online Members", online, true)
+     .setFooter("Prefix: ! | This bot is still in it's early phases | Go check out the latest newspaper too!", bot.user.avatarURL);
 
     return message.channel.send(embed2)
+  }
+
+  if(cmd === `${prefix}report`){
+    let rUser =
   }
 });
 
