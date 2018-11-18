@@ -1,3 +1,4 @@
+const botconfig = require("./botconfig")
 const Discord = require("discord.js");
 
 const bot = new Discord.Client({disableEverybody: true})
@@ -17,7 +18,7 @@ bot.on("message", async message => {
   if(message.author.bot) return;
   if(message.channel.type === "dm") return;
 
-  let prefix = "!"
+  let prefix = botconfig.prefix
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
