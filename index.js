@@ -44,7 +44,7 @@ bot.on("message", async message => {
 
   if(cmd === `${prefix}serverinfo`){
     let sicon = message.guild.iconURL
-    let online = guild.members.filter(m => m.presence.status === 'online').size + guild.members.filter(m => m.presence.status === 'idle').size + guild.members.filter(m => m.presence.status === 'dnd').size
+    let online = message.guild.members.filter(m => m.presence.status === 'online').size + message.guild.members.filter(m => m.presence.status === 'idle').size + message.guild.members.filter(m => m.presence.status === 'dnd').size
     let embed2 = new Discord.RichEmbed()
     .setAuthor("TES Bot", bot.user.avatarURL)
     .setThumbnail(sicon)
