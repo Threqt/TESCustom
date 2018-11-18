@@ -49,7 +49,7 @@ bot.on("message", async message => {
     let embed2 = new Discord.RichEmbed()
     .setAuthor("TES Bot", bot.user.avatarURL)
     .setThumbnail(sicon)
-    .addField("Owner", message.guild.ownerId, true)
+    .addField("Owner", message.guild.owner, true)
     .addField("Created", message.guild.createdAt, true)
     .addField("Join Date", message.guild.joinedAt, true)
     .addField("Roles", message.guild.roles.size, true)
