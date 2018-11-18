@@ -11,7 +11,7 @@ bot.on(`guildMemberAdd`, member => {
 
 bot.on("ready", async() => {
   console.log(`${bot.user.username} is online!`);
-  bot.user.setActivity("unbiased TES papers", {type: "READING"});
+  bot.user.setActivity("unbiased TES papers", {type: "WATCHING"});
 });
 
 bot.on("message", async message => {
