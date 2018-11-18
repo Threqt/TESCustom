@@ -47,7 +47,7 @@ bot.on("message", async message => {
     let embed2 = new Discord.RichEmbed()
     .setAuthor("TES Bot", bot.user.avatarURL)
     .setThumbnail(sicon)
-    .addField("Created By", message.guild.author)
+    .addField("Created By", message.guild.createdBy)
 
     return message.channel.send(embed2)
   }
