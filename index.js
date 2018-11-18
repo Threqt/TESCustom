@@ -41,6 +41,16 @@ bot.on("message", async message => {
 
     return message.channel.send(embed)
   }
+
+  if(cmd === `${prefix}serverinfo`){
+    let sicon = message.guild.displayAvatarURL
+    let embed2 = new Discord.RichEmbed()
+    .setAuthor("TES Bot", bot.user.avatarURL)
+    .setThumbnail(sicon)
+    .addField("Created By", message.guild.author)
+
+    return message.channel.send(embed2)
+  }
 });
 
 
