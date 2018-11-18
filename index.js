@@ -44,7 +44,7 @@ bot.on("message", async message => {
 
   if(cmd === `${prefix}serverinfo`){
     let sicon = message.guild.iconURL
-    let online = guild.members.filter(m => m.presence.status !== 'offline')
+    let online = message.guild.members.filter(m => m.presence.status !== 'offline')
     let categories = message.guild.channels.filter(m => m.type === 'category').size
     let embed2 = new Discord.RichEmbed()
     .setAuthor("TES Bot", bot.user.avatarURL)
