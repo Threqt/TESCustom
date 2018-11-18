@@ -21,7 +21,7 @@ bot.on("message", async message => {
   let prefix = botconfig.prefix
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
-  
+
   if(cmd === `${prefix}ping`){
     return message.channel.send("pong");
   }
@@ -62,9 +62,6 @@ bot.on("message", async message => {
     return message.channel.send(embed2)
   }
 
-  if(cmd === `${prefix}report`){
-    let rUser =
-  }
 });
 
 
