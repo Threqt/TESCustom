@@ -44,7 +44,7 @@ bot.on("message", async message => {
 
   if(cmd === `${prefix}serverinfo`){
     let sicon = message.guild.iconURL
-    let online = message.guild.members.filter(m => m.presence.status === 'online').size + message.guild.members.filter(m => m.presence.status === 'idle').size + message.guild.members.filter(m => m.presence.status === 'dnd').size
+    let online = message.guild.members.filter(m => m.presence.status !== 'offline').size
     let embed2 = new Discord.RichEmbed()
     .setAuthor("TES Bot", bot.user.avatarURL)
     .setThumbnail(sicon)
@@ -54,7 +54,7 @@ bot.on("message", async message => {
     .addField("Roles", message.guild.roles.size, true)
     .addField("Channels", message.guild.channels.size, true)
     .addField("Region", message.guild.region, true)
-    .addField("Total Members", message.guild.memberCount, true);
+    .addField("Total Members", message.guild.memberCount, true)
     .addField("Online Members", online);
 
     return message.channel.send(embed2)
