@@ -20,7 +20,7 @@ bot.on("message", async message => {
 
   let prefix = botconfig.prefix
   const args = message.content.slice(botconfig.prefix.length).trim().split(/ +/g);
-  const command = args.shift().toLowerCase();
+  const cmd = args.shift().toLowerCase();
 
   if(cmd === `${prefix}ping`){
     return message.channel.send("pong");
