@@ -1,7 +1,7 @@
-const botconfig = require("./botconfig")
+const config = require("./botconfig")
 const Discord = require("discord.js");
 
-const bot = new Discord.Client({disableEverybody: true})
+const bot = new Discord.Client({disableEverybody: true}
 
 bot.on(`guildMemberAdd`, member => {
   console.log(`User ` + member.user.username + ` has joined`)
@@ -14,20 +14,18 @@ bot.on("ready", async() => {
   bot.user.setActivity("Akame's sick covers", {type: "LISTENING"});
 });
 
-bot.on("message", async message => {
-  if(message.author.bot) return;
-  if(message.channel.type === "dm") return;
+bot.on("message", message => {
+  if (message.author.bot) return;
+  // This is where we'll put our code.
+  if (message.content.indexOf(config.prefix) !== 0) return;
 
-  let prefix = botconfig.prefix
-  let messageArray = message.content.split(" ");
-  let cmd = messageArray[0];
-  let args = messageArray.slice(1);
+  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+  const cmd = args.shift().toLowerCase();
 
-  if(cmd === `${prefix}ping`){
+  if(cmd === `ping`){
     return message.channel.send("pong");
-  }
-
-  if(cmd === `${prefix}botinfo`){
+  } else
+  if(cmd === `botinfo`){
     const embed = new Discord.RichEmbed()
                .setAuthor(`TES Bot`, bot.user.avatarURL)
                .setThumbnail(bot.user.avatarURL)
@@ -40,9 +38,8 @@ bot.on("message", async message => {
                .setColor(000000);
 
     return message.channel.send(embed)
-  }
-
-  if(cmd === `${prefix}serverinfo`){
+  } else
+  if(cmd === `serverinfo`){
     let sicon = message.guild.iconURL
     let online = message.guild.members.filter(m => m.presence.status !== 'offline').size
     let categories = message.guild.channels.filter(m => m.type === 'category').size
@@ -62,8 +59,6 @@ bot.on("message", async message => {
 
     return message.channel.send(embed2)
   }
-
-
 });
 
 
