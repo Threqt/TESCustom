@@ -55,12 +55,13 @@ bot.on("message", message => {
     .addField("Region", message.guild.region, true)
     .addField("Total Members", message.guild.memberCount, true)
     .addField("Online Members", online, true)
-     .setFooter("Prefix: ! | This bot is still in it's early phases | Go check out the latest newspaper too!", bot.user.avatarURL);
+    .setFooter("Prefix: ! | This bot is still in it's early phases | Go check out the latest newspaper too!", bot.user.avatarURL)
+    .setTimestamp();
 
     return message.channel.send(embed2)
   } else
   if(cmd === `commands`){
-    return message.user.sendMessage("yo wassup bro its ur mom OOOOOOO")
+    return message.author.sendMessage("yo wassup bro its ur mom OOOOOOO")
   }
 });
 
