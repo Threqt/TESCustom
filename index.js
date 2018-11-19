@@ -59,7 +59,7 @@ bot.on("message", message => {
 
     return message.channel.send(embed2)
   } else
-  if(cmd === `commands`){}
+  if(cmd === `commands`){
     return message.user.sendMessage("yo wassup bro its ur mom OOOOOOO")
   }
 });
