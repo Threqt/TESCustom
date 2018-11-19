@@ -61,7 +61,7 @@ bot.on("message", message => {
     return message.channel.send(embed2)
   } else
   if(cmd === `commands`){
-    return message.author.sendMessage("yo wassup bro its ur mom OOOOOOO")
+    return message.author.sendMessage("The latest documentation for the bot can be found here: https://docs.google.com/document/d/1ovYzUwJYcWkWiDUd5-5GI2RMtX981Er4SdoUwYJRmyc/edit?usp=sharing")
   }
 });
 
