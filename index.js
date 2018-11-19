@@ -58,6 +58,9 @@ bot.on("message", message => {
      .setFooter("Prefix: ! | This bot is still in it's early phases | Go check out the latest newspaper too!", bot.user.avatarURL);
 
     return message.channel.send(embed2)
+  } else
+  if(cmd === `commands`){}
+    return message.user.sendMessage("yo wassup bro its ur mom OOOOOOO")
   }
 });
 
