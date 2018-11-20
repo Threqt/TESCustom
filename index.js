@@ -62,6 +62,12 @@ bot.on("message", message => {
   } else
   if(cmd === `cmds`){
     return message.author.sendMessage("The latest documentation for the bot can be found here: https://docs.google.com/document/d/1ovYzUwJYcWkWiDUd5-5GI2RMtX981Er4SdoUwYJRmyc/edit?usp=sharing")
+  } else
+  if(cmd === `journalistapp`){
+    return message.author.sendMessage("The Journalist Application can be found here. Good luck! https://docs.google.com/forms/d/e/1FAIpQLSeOxjBPxgr-yGRlUdlITXX33RzGIKrcSuhCvKZ6jW63__40_A/viewform")
+  } else
+  if(cmd === `journeymenapp`){
+      return message.author.sendMessage("The Journeymen Application can be found here. Good luck!https://docs.google.com/forms/d/e/1FAIpQLSdq57DGEF9iZ7V6cLSypDAd64KI0dLv1aRHvER0rURib2YKFw/viewform")
   }
 });
 
