@@ -68,8 +68,7 @@ bot.on("message", message => {
   } else
   if(cmd === `journeymenapp`){
       return message.author.sendMessage("The Journeymen Application can be found here. Good luck!https://docs.google.com/forms/d/e/1FAIpQLSdq57DGEF9iZ7V6cLSypDAd64KI0dLv1aRHvER0rURib2YKFw/viewform")
-  }
-  }
+}
 }
 });
 
