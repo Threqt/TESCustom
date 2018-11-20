@@ -76,7 +76,6 @@ if(cmd === `giveaway`){
   } else {
     message.member.addRole(myRole.id)
   }
-} 
 }
 });
 
