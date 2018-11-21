@@ -25,10 +25,10 @@ bot.on("message", message => {
 
     const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const cmd = args.shift().toLowerCase();
-    const journstatus = true;
-    const journastatus = true;
-    const bountyhstatus = true;
-    const bountyrstatus = true;
+    journstatus = "true"
+    journastatus = "true"
+    bountyhstatus = "true"
+    bountyrstatus = "true"
 
     if (cmd === `ping`) {
         return message.channel.send("pong");
@@ -72,28 +72,28 @@ bot.on("message", message => {
         return message.author.send("```css\n[TES BOT] \n{Creator:} .Threqt\n\n [COMMAND PREFIX:] ! \n\n [COMMANDS:] \n {►!ping: 'Returns pong, test message.'} \n {►!botinfo: | 'Returns info about the bot.'} \n {►!serverinfo: | 'Returns info about the server'} \n {►!journeymenapp: | 'Messages the user a link to the journeymen applications when the are open.'} \n {►!journalistapp: | 'Messages the user a link to the journalist applications when the are open.'} \n {►!giveaway: | 'Gives the user the giveaway role if the user does not have it, removes it if the user does.'}\n {►!bountyreporterapp: | 'Messages the user a link to the Bounty Reporter applicatons when they are open.'}\n {►!bountyhunterapp: | 'Messages the user a link to the bounty hunter applications when they are open.'}}```")
     } else
     if (cmd === `journalistapp`) {
-        if (journastatus === true) {
+        if (journastatus === "true") {
             return message.author.send("The Journalist Application can be found here. Good luck! https://docs.google.com/forms/d/e/1FAIpQLSeOxjBPxgr-yGRlUdlITXX33RzGIKrcSuhCvKZ6jW63__40_A/viewform")
         } else {
             return message.channel.send("Applications are currently closed, sorry!")
         }
     } else
     if (cmd === `journeymenapp`) {
-        if (journstatus === true) {
+        if (journstatus === "true") {
             return message.author.send("The Journeymen Application can be found here. Good luck! https://docs.google.com/forms/d/e/1FAIpQLSdq57DGEF9iZ7V6cLSypDAd64KI0dLv1aRHvER0rURib2YKFw/viewform")
         } else {
             return message.channel.send("Applications are currently closed, sorry!")
         }
     } else
     if (cmd === `bountyreporterapp`) {
-        if (bountyrstatus === true) {
+        if (bountyrstatus === "true") {
             return message.author.send("The Bounty Reporter Application can be found here. Good luck! https://docs.google.com/forms/d/e/1FAIpQLSfqaNe-2IzHpRH3nwPfALOPyrMejLyoAIqPBhkQ8PebhnDMpQ/viewform")
         } else {
             return message.channel.send("Applications are currently closed, sorry!")
         }
     } else
     if (cmd === `bountyhunterapp`) {
-        if (bountyhstatus === true) {
+        if (bountyhstatus === "true") {
             return message.author.send("The Bounty Hunter Application can be found here. Good luck! https://docs.google.com/forms/d/e/1FAIpQLScs-wSxQWWXCk180t2BO2mOoEdVvdwtm_xalDr0iozrB8sFDQ/viewform")
         } else {
             return message.channel.send("Applications are currently closed, sorry!")
