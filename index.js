@@ -61,7 +61,7 @@ bot.on("message", message => {
     return message.channel.send(embed2)
   } else
   if(cmd === `cmds`){
-    return message.author.sendMessage("The latest documentation for the bot can be found here: https://docs.google.com/document/d/1ovYzUwJYcWkWiDUd5-5GI2RMtX981Er4SdoUwYJRmyc/edit?usp=sharing")
+    return message.author.send("```css\n[TES BOT] \n{Creator:} .Threqt\n\n [COMMAND PREFIX:] ! \n\n [COMMANDS:] \n {►!ping: 'Returns pong, test message.'} \n {►!botinfo: | 'Returns info about the bot.'} \n {►!serverinfo: | 'Returns info about the server'} \n {►!journeymenapp: | 'Messages the user a link to the journeymen applications when the are open.'} \n {►!journalistapp: | 'Messages the user a link to the journalist applications when the are open.'} \n {►!giveaway: | 'Gives the user the giveaway role if the user does not have it, removes it if the user does.'}```")
   } else
   if(cmd === `journalistapp`){
     return message.author.sendMessage("The Journalist Application can be found here. Good luck! https://docs.google.com/forms/d/e/1FAIpQLSeOxjBPxgr-yGRlUdlITXX33RzGIKrcSuhCvKZ6jW63__40_A/viewform")
