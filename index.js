@@ -64,10 +64,16 @@ bot.on("message", message => {
     return message.author.send("```css\n[TES BOT] \n{Creator:} .Threqt\n\n [COMMAND PREFIX:] ! \n\n [COMMANDS:] \n {►!ping: 'Returns pong, test message.'} \n {►!botinfo: | 'Returns info about the bot.'} \n {►!serverinfo: | 'Returns info about the server'} \n {►!journeymenapp: | 'Messages the user a link to the journeymen applications when the are open.'} \n {►!journalistapp: | 'Messages the user a link to the journalist applications when the are open.'} \n {►!giveaway: | 'Gives the user the giveaway role if the user does not have it, removes it if the user does.'}```")
   } else
   if(cmd === `journalistapp`){
-    return message.author.sendMessage("The Journalist Application can be found here. Good luck! https://docs.google.com/forms/d/e/1FAIpQLSeOxjBPxgr-yGRlUdlITXX33RzGIKrcSuhCvKZ6jW63__40_A/viewform")
+    return message.author.send("The Journalist Application can be found here. Good luck! https://docs.google.com/forms/d/e/1FAIpQLSeOxjBPxgr-yGRlUdlITXX33RzGIKrcSuhCvKZ6jW63__40_A/viewform")
   } else
   if(cmd === `journeymenapp`){
-      return message.author.sendMessage("The Journeymen Application can be found here. Good luck!https://docs.google.com/forms/d/e/1FAIpQLSdq57DGEF9iZ7V6cLSypDAd64KI0dLv1aRHvER0rURib2YKFw/viewform")
+      return message.author.send("The Journeymen Application can be found here. Good luck! https://docs.google.com/forms/d/e/1FAIpQLSdq57DGEF9iZ7V6cLSypDAd64KI0dLv1aRHvER0rURib2YKFw/viewform")
+} else
+if(cmd === `bountyreporterapp`){
+  return message.author.send("The Bounty Reporter Application can be found here. Good luck! https://docs.google.com/forms/d/e/1FAIpQLSfqaNe-2IzHpRH3nwPfALOPyrMejLyoAIqPBhkQ8PebhnDMpQ/viewform")
+} else
+if(cmd === `bountyhunterapp`){
+  return message.author.send("The Bounty Hunter Application can be found here. Good luck! https://docs.google.com/forms/d/e/1FAIpQLScs-wSxQWWXCk180t2BO2mOoEdVvdwtm_xalDr0iozrB8sFDQ/viewform")
 } else
 if(cmd === `giveaway`){
   const myRole = message.guild.roles.find(role => role.name === "Giveaway")
