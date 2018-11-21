@@ -73,8 +73,10 @@ if(cmd === `giveaway`){
   const myRole = message.guild.roles.find(role => role.name === "Giveaway")
   if(message.member.roles.has(myRole.id)){
     message.member.removeRole(myRole.id)
+    return message.channel.send("Removed the role 'Giveaway'")
   } else {
     message.member.addRole(myRole.id)
+    return message.channel.send("Added the role 'Giveaway'")
   }
 }
 });
