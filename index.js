@@ -120,38 +120,38 @@ bot.on("message", message => {
     } else {
       return message.channel.send("Insufficient Permissions")
     }
+  } else
+  if (cmd === `togglejournalist`) {
+    let admin = message.guild.roles.find(r => r.name === "Administrator")
+    let mod = message.guild.roles.find(r => r.name === "Moderator")
+    if (message.member.roles.has(admin.id) || message.member.roles.has(mod.id)) {
+      journastatus = journastatus ? false : true;
+      console.log(journastatus)
+      return message.channel.send("Toggled journalist appliciation status to " + journastatus + ".")
+    } else {
+      return message.channel.send("Insufficient Permissions")
+    }
+  } else if (cmd === `togglebountyreporter`) {
+    let admin = message.guild.roles.find(r => r.name === "Administrator")
+    let mod = message.guild.roles.find(r => r.name === "Moderator")
+    if (message.member.roles.has(admin.id) || message.member.roles.has(mod.id)) {
+      bountyrstatus = bountyrstatus ? false : true;
+      console.log(bountyrstatus)
+      return message.channel.send("Toggled Bounty Reporter appliciation status to " + bountyrstatus + ".")
+    } else {
+      return message.channel.send("Insufficient Permissions")
+    }
+  } else if (cmd === `togglebountyhunter`) {
+    let admin = message.guild.roles.find(r => r.name === "Administrator")
+    let mod = message.guild.roles.find(r => r.name === "Moderator")
+    if (message.member.roles.has(admin.id) || message.member.roles.has(mod.id)) {
+      bountyhstatus = bountyhstatus ? false : true;
+      console.log(bountyhstatus)
+      return message.channel.send("Toggled Bounty Hunter appliciation status to " + bountyhstatus + ".")
+    } else {
+      return message.channel.send("Insufficient Permissions")
+    }
   }
-} else if (cmd === `togglejournalist`) {
-  let admin = message.guild.roles.find(r => r.name === "Administrator")
-  let mod = message.guild.roles.find(r => r.name === "Moderator")
-  if (message.member.roles.has(admin.id) || message.member.roles.has(mod.id)) {
-    journastatus = journastatus ? false : true;
-    console.log(journastatus)
-    return message.channel.send("Toggled journalist appliciation status to " + journastatus + ".")
-  } else {
-    return message.channel.send("Insufficient Permissions")
-  }
-} else if (cmd === `togglebountyreporter`) {
-  let admin = message.guild.roles.find(r => r.name === "Administrator")
-  let mod = message.guild.roles.find(r => r.name === "Moderator")
-  if (message.member.roles.has(admin.id) || message.member.roles.has(mod.id)) {
-    bountyrstatus = bountyrstatus ? false : true;
-    console.log(bountyrstatus)
-    return message.channel.send("Toggled Bounty Reporter appliciation status to " + bountyrstatus + ".")
-  } else {
-    return message.channel.send("Insufficient Permissions")
-  }
-} else if (cmd === `togglebountyhunter`) {
-  let admin = message.guild.roles.find(r => r.name === "Administrator")
-  let mod = message.guild.roles.find(r => r.name === "Moderator")
-  if (message.member.roles.has(admin.id) || message.member.roles.has(mod.id)) {
-    bountyhstatus = bountyhstatus ? false : true;
-    console.log(bountyhstatus)
-    return message.channel.send("Toggled Bounty Hunter appliciation status to " + bountyhstatus + ".")
-  } else {
-    return message.channel.send("Insufficient Permissions")
-  }
-}
 });
 
 
