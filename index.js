@@ -158,7 +158,6 @@ bot.on("message", message => {
     if (mentions == null) return;
     let mentionMessage = message.content.slice(8)
     mentions.send(mentionMessage)
-    a
   }
 });
 
