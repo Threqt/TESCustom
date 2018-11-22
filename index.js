@@ -151,6 +151,14 @@ bot.on("message", message => {
     } else {
       return message.channel.send("Insufficient Permissions")
     }
+  } else
+  if (cmd === `message`) {
+    let msg = message.content.toLowerCase()
+    let mentions = message.mentions.users.first()
+    if (mentions == null) return;
+    let mentionMessage = message.content.slice(8)
+    mentions.send(mentionMessage)
+    a
   }
 });
 
