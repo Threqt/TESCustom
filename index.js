@@ -74,8 +74,8 @@ bot.on("message", message => {
   } else
   if (cmd === `journalistapp`) {
     if (journastatus === true) {
-      const user =  message.member.id
-      message.channel.send(`<@${user}>, check your DMs!`)
+      const user = message.member.id
+      message.channel.send(`<@${user}>, check your DMs for the application!`)
       return message.author.send("The Journalist Application can be found here. Good luck! https://docs.google.com/forms/d/e/1FAIpQLSeOxjBPxgr-yGRlUdlITXX33RzGIKrcSuhCvKZ6jW63__40_A/viewform")
     } else {
       return message.channel.send("Applications are currently closed, sorry!")
@@ -83,8 +83,8 @@ bot.on("message", message => {
   } else
   if (cmd === `journeymenapp`) {
     if (journstatus === true) {
-      const user =  message.member.id
-      message.channel.send(`<@${user}>, check your DMs!`)
+      const user = message.member.id
+      message.channel.send(`<@${user}>, check your DMs for the application!`)
       return message.author.send("The Journeymen Application can be found here. Good luck! https://docs.google.com/forms/d/e/1FAIpQLSdq57DGEF9iZ7V6cLSypDAd64KI0dLv1aRHvER0rURib2YKFw/viewform")
     } else {
       return message.channel.send("Applications are currently closed, sorry.")
@@ -92,8 +92,8 @@ bot.on("message", message => {
   } else
   if (cmd === `bountyreporterapp`) {
     if (bountyrstatus === true) {
-      const user =  message.member.id
-      message.channel.send(`<@${user}>, check your DMs!`)
+      const user = message.member.id
+      message.channel.send(`<@${user}>, check your DMs for the application!`)
       message.author.send("The Bounty Reporter Application can be found here. Good luck! https://docs.google.com/forms/d/e/1FAIpQLSfqaNe-2IzHpRH3nwPfALOPyrMejLyoAIqPBhkQ8PebhnDMpQ/viewform")
     } else {
       return message.channel.send("Applications are currently closed, sorry!")
@@ -101,8 +101,8 @@ bot.on("message", message => {
   } else
   if (cmd === `bountyhunterapp`) {
     if (bountyhstatus === true) {
-      const user =  message.member.id
-      message.channel.send(`<@${user}>, check your DMs!`)
+      const user = message.member.id
+      message.channel.send(`<@${user}>, check your DMs for the application!`)
       return message.author.send("The Bounty Hunter Application can be found here. Good luck! https://docs.google.com/forms/d/e/1FAIpQLScs-wSxQWWXCk180t2BO2mOoEdVvdwtm_xalDr0iozrB8sFDQ/viewform")
     } else {
       return message.channel.send("Applications are currently closed, sorry!")
@@ -162,11 +162,24 @@ bot.on("message", message => {
   } else
   if (cmd === `message`) {
     let msg = message.content.toLowerCase()
-    let mentions = message.mentions
-
+    let members = message.mentions.members.array()
+    let context = args.slice(message.mentions.members.size).join(' ')
+    let noBots = true
+    if (members == null) return message.channel.send("Invalid Arguments");
+    for (let i = 0; i < members.length; i++) {
+      let user = members[i]
+      if (user.user.bot === true) {
+        message.channel.send("One of the users specified is a bot, please redo.")
+        noBots = false;
+        break;
+      }
+    }
+    noBots ? message.mentions.members.forEach(m => m.send(context)) : message.channel.send(" ")
   }
 });
 
-
+bot.on("error", (e) => console.error(e));
+bot.on("warn", (e) => console.warn(e));
+bot.on("debug", (e) => console.info(e));
 
 bot.login(process.env.token);
