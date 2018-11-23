@@ -74,6 +74,8 @@ bot.on("message", message => {
   } else
   if (cmd === `journalistapp`) {
     if (journastatus === true) {
+      const user =  message.member.id
+      message.channel.send(`<@${user}>, check your DMs!`)
       return message.author.send("The Journalist Application can be found here. Good luck! https://docs.google.com/forms/d/e/1FAIpQLSeOxjBPxgr-yGRlUdlITXX33RzGIKrcSuhCvKZ6jW63__40_A/viewform")
     } else {
       return message.channel.send("Applications are currently closed, sorry!")
@@ -81,6 +83,8 @@ bot.on("message", message => {
   } else
   if (cmd === `journeymenapp`) {
     if (journstatus === true) {
+      const user =  message.member.id
+      message.channel.send(`<@${user}>, check your DMs!`)
       return message.author.send("The Journeymen Application can be found here. Good luck! https://docs.google.com/forms/d/e/1FAIpQLSdq57DGEF9iZ7V6cLSypDAd64KI0dLv1aRHvER0rURib2YKFw/viewform")
     } else {
       return message.channel.send("Applications are currently closed, sorry.")
@@ -88,13 +92,17 @@ bot.on("message", message => {
   } else
   if (cmd === `bountyreporterapp`) {
     if (bountyrstatus === true) {
-      return message.author.send("The Bounty Reporter Application can be found here. Good luck! https://docs.google.com/forms/d/e/1FAIpQLSfqaNe-2IzHpRH3nwPfALOPyrMejLyoAIqPBhkQ8PebhnDMpQ/viewform")
+      const user =  message.member.id
+      message.channel.send(`<@${user}>, check your DMs!`)
+      message.author.send("The Bounty Reporter Application can be found here. Good luck! https://docs.google.com/forms/d/e/1FAIpQLSfqaNe-2IzHpRH3nwPfALOPyrMejLyoAIqPBhkQ8PebhnDMpQ/viewform")
     } else {
       return message.channel.send("Applications are currently closed, sorry!")
     }
   } else
   if (cmd === `bountyhunterapp`) {
     if (bountyhstatus === true) {
+      const user =  message.member.id
+      message.channel.send(`<@${user}>, check your DMs!`)
       return message.author.send("The Bounty Hunter Application can be found here. Good luck! https://docs.google.com/forms/d/e/1FAIpQLScs-wSxQWWXCk180t2BO2mOoEdVvdwtm_xalDr0iozrB8sFDQ/viewform")
     } else {
       return message.channel.send("Applications are currently closed, sorry!")
@@ -154,10 +162,8 @@ bot.on("message", message => {
   } else
   if (cmd === `message`) {
     let msg = message.content.toLowerCase()
-    let mentions = message.mentions.users.first()
-    if (mentions == null) return;
-    let mentionMessage = message.content.slice(8)
-    mentions.send(mentionMessage)
+    let mentions = message.mentions
+
   }
 });
 
