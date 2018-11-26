@@ -4,6 +4,7 @@ let journstatus = true
 let journastatus = true
 let bountyhstatus = true
 let bountyrstatus = true
+let merchantapp = true
 
 const bot = new Discord.Client({
   disableEverybody: true
@@ -108,6 +109,15 @@ bot.on("message", message => {
       return message.channel.send("Applications are currently closed, sorry!")
     }
   } else
+  if (cmd === "merchantapp") {
+    if (merchantapp === true) {
+      const user = message.member.id
+      message.channel.send(`<@${user}>, check your DMs for the application!`)
+      return message.author.send("The Merchant Application can be found here. Good luck! https://docs.google.com/forms/d/e/1FAIpQLSfQtoLHxgjBFXmIlc5fxbW-ykd2Ubddc4Nf60lMfQkpWge2Rw/viewform?usp=sf_link")
+    } else {
+      return message.channel.send("Applications are currently closed, sorry!")
+    }
+  } else
   if (cmd === `giveaway`) {
     const myRole = message.guild.roles.find(role => role.name === "Giveaway")
     if (message.member.roles.has(myRole.id)) {
@@ -160,6 +170,17 @@ bot.on("message", message => {
       return message.channel.send("Insufficient Permissions")
     }
   } else
+  if (cmd === `togglemerchant`){
+    let admin = message.guild.roles.find(r => r.name === "Administrator")
+    let mod = message.guild.roles.find(r => r.name === "Moderator")
+    if (message.member.roles.has(admin.id) || message.member.roles.has(mod.id)) {
+      merchantapp = merchantapp ? false : true;
+      console.log(merchantapp)
+      return message.channel.send("Toggled merchant appliciation status to " + merchantapp + ".")
+    } else {
+      return message.channel.send("Insufficient Permissions")
+    }
+  }
   if (cmd === `message`) {
     let msg = message.content.toLowerCase()
     let members = message.mentions.members.array()
