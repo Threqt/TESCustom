@@ -129,7 +129,7 @@ bot.on("message", message => {
     }
   } else
   if (cmd === `togglejourneymen`) {
-    let admin = message.guild.roles.find(r => r.name === "Administrator")
+    let admin = message.guild.roles.find(r => r.name === "Adminstrator")
     let mod = message.guild.roles.find(r => r.name === "Moderator")
     if (message.member.roles.has(admin.id) || message.member.roles.has(mod.id)) {
       journstatus = journstatus ? false : true;
@@ -140,7 +140,7 @@ bot.on("message", message => {
     }
   } else
   if (cmd === `togglejournalist`) {
-    let admin = message.guild.roles.find(r => r.name === "Administrator")
+    let admin = message.guild.roles.find(r => r.name === "Adminstrator")
     let mod = message.guild.roles.find(r => r.name === "Moderator")
     if (message.member.roles.has(admin.id) || message.member.roles.has(mod.id)) {
       journastatus = journastatus ? false : true;
@@ -150,7 +150,7 @@ bot.on("message", message => {
       return message.channel.send("Insufficient Permissions")
     }
   } else if (cmd === `togglebountyreporter`) {
-    let admin = message.guild.roles.find(r => r.name === "Administrator")
+    let admin = message.guild.roles.find(r => r.name === "Adminstrator")
     let mod = message.guild.roles.find(r => r.name === "Moderator")
     if (message.member.roles.has(admin.id) || message.member.roles.has(mod.id)) {
       bountyrstatus = bountyrstatus ? false : true;
@@ -160,7 +160,7 @@ bot.on("message", message => {
       return message.channel.send("Insufficient Permissions")
     }
   } else if (cmd === `togglebountyhunter`) {
-    let admin = message.guild.roles.find(r => r.name === "Administrator")
+    let admin = message.guild.roles.find(r => r.name === "Adminstrator")
     let mod = message.guild.roles.find(r => r.name === "Moderator")
     if (message.member.roles.has(admin.id) || message.member.roles.has(mod.id)) {
       bountyhstatus = bountyhstatus ? false : true;
@@ -171,7 +171,7 @@ bot.on("message", message => {
     }
   } else
   if (cmd === `togglemerchant`){
-    let admin = message.guild.roles.find(r => r.name === "Administrator")
+    let admin = message.guild.roles.find(r => r.name === "Adminstrator")
     let mod = message.guild.roles.find(r => r.name === "Moderator")
     if (message.member.roles.has(admin.id) || message.member.roles.has(mod.id)) {
       merchantapp = merchantapp ? false : true;
