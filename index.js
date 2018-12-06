@@ -223,7 +223,7 @@ bot.on("message", message => {
     if (context === "faction officer") {
       switcher(myRole1)
     } else
-    if (context === "hbc") {
+    if (context === "hbc" || context = "Hudson Bay Company" || context = "Hudson's Bay Company") {
       switcher(myRole2)
     } else {
       message.channel.send(`Invalid Role`)
