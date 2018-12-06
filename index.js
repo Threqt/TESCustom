@@ -196,34 +196,7 @@ bot.on("message", message => {
           }
         }
         noBots ? message.mentions.members.forEach(m => m.send(context)) : message.channel.send(" ")
-      } else
-      if (cmd === `role`) {
-        const myRole = message.guild.roles.find(role => role.name === "Faction Leader")
-        const myRole1 = message.guild.roles.find(role => role.name === "Faction Officer")
-        const myRole2 = message.guild.roles.find(role => role.name === "Hudson Bay Company")
-        let context = args.join(' ')
-
-        function switcher(role) {
-          switch (message.member.roles.has(role.id)) {
-            case false:
-              message.member.addRole(role.id)
-              message.channel.send(`Successfully added ${role.name}!`)
-              break;
-            case true:
-              message.member.removeRole(role.id)
-              message.channel.send(`Successfully removed ${role.name}!`)
-              break;
-          }
-        }
-        if (context === "Faction Leader") {
-          switcher(myRole)
-        }
-        if (context === "Faction Officer") {
-          switcher(myRole1)
-        }
-        if (context === "hbc") {
-          switcher(myRole2)
-        }
+      } 
       });
 
     bot.on("error", (e) => console.error(e)); bot.on("warn", (e) => console.warn(e)); bot.on("debug", (e) => console.info(e));
