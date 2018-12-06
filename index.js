@@ -202,6 +202,7 @@ bot.on("message", message => {
           const myRole1 = message.guild.roles.find(role => role.name === "Faction Officer")
           const myRole2 = message.guild.roles.find(role => role.name === "Hudson Bay Company")
           let context = args.join(' ')
+          context = context.toLowerCase()
 
           function switcher(role) {
             switch (message.member.roles.has(role.id)) {
@@ -217,12 +218,14 @@ bot.on("message", message => {
           }
           if (context === "Faction Leader") {
             switcher(myRole)
-          }
+          } else
           if (context === "Faction Officer") {
             switcher(myRole1)
-          }
+          } else
           if (context === "hbc") {
             switcher(myRole2)
+          } else {
+            message.channel.send(`Invalid Role`)
           }
       }
       });
