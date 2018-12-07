@@ -118,16 +118,6 @@ bot.on("message", message => {
       return message.channel.send("Applications are currently closed, sorry!")
     }
   } else
-  if (cmd === `giveaway`) {
-    const myRole = message.guild.roles.find(role => role.name === "Giveaway")
-    if (message.member.roles.has(myRole.id)) {
-      message.member.removeRole(myRole.id)
-      return message.channel.send("Removed the role 'Giveaway'")
-    } else {
-      message.member.addRole(myRole.id)
-      return message.channel.send("Added the role 'Giveaway'")
-    }
-  } else
   if (cmd === `togglejourneymen`) {
     let admin = message.guild.roles.find(r => r.name === "Adminstrator")
     let mod = message.guild.roles.find(r => r.name === "Moderator")
@@ -217,23 +207,24 @@ bot.on("message", message => {
           break;
       }
     }
-    if (context === "faction leader"){
-      switcher(myRole)
-    } else
-    if (context === "faction officer"){
-      switcher(myRole1)
-    } else
-    if (context === "hbc"){
-      switcher(myRole2)
-    } else
-    if (context === "hudson bay company"){
-      switcher(myRole2)
-    } else
-    if (context === "hudson's bay company"){
-      switcher(myRole2)
-    } else
-    if (context === "hudsons bay company"){
-      switcher(myRole2)
+    let contexts = ["faction leader", "faction officer", "hbc", "giveaway"]
+    let roles = ["faction leader", myRole, "faction officer", myRole1, "hbc", myRole2, "giveaway", myRole3]
+    if (context){
+      console.log("yes")
+      for (var i = 0; i < contexts.length; i++){
+        let contextvalue = contexts[i]
+        if (context === contextvalue){
+          console.log('success')
+          for (var o = 0; o < roles.length; o++){
+            let role = roles[o]
+            if(context === role){
+              let role1 = roles[o + 1]
+              switcher(role1)
+              break;
+            }
+          }
+        }
+      }
     }
   }
 });
