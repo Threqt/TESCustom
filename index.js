@@ -235,6 +235,7 @@ bot.on("message", message => {
     if (context === "hudsons bay company"){
       switcher(myRole2)
     }
+  }
 });
 
 bot.on("error", (e) => console.error(e));
