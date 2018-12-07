@@ -191,6 +191,7 @@ bot.on("message", message => {
     const myRole = message.guild.roles.find(role => role.name === "Faction Leader")
     const myRole1 = message.guild.roles.find(role => role.name === "Faction Officer")
     const myRole2 = message.guild.roles.find(role => role.name === "Hudson Bay Company")
+    const myRole3 = message.guild.roles.find(role => role.name === "Giveaway")
     let context = args.join(' ')
     context = context.toLowerCase()
     console.log(context)
