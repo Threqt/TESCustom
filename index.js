@@ -227,18 +227,13 @@ bot.on("message", message => {
       switcher(myRole2)
     } else {
       message.channel.send(`Invalid Role`)
-    }
+    } else
     if (context === "hudson's bay company") {
       switcher(myRole2)
     } else {
       message.channel.send(`Invalid Role`)
-    }
+    } else
     if (context === "hudson bay company") {
-      switcher(myRole2)
-    } else {
-      message.channel.send(`Invalid Role`)
-    }
-    if (context === "hudson's bay company") {
       switcher(myRole2)
     } else {
       message.channel.send(`Invalid Role`)
