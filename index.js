@@ -208,8 +208,8 @@ bot.on("message", message => {
           break;
       }
     }
-    let contexts = ["faction leader", "faction officer", "hbc", "giveaway"]
-    let roles = ["faction leader", myRole, "faction officer", myRole1, "hbc", myRole2, "giveaway", myRole3]
+    let contexts = ["faction leader", "faction officer", "hbc", "giveaway", "Hudson Bay Company", "Hudson's Bay Company"]
+    let roles = [contexts[0], myRole, context[1], myRole1, context[2], myRole2, context[3], myRole3, context[4], myRole2, context[5], myRole2]
     if (context) {
       console.log("yes")
       for (var i = 0; i < contexts.length; i++) {
