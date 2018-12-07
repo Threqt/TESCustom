@@ -209,15 +209,15 @@ bot.on("message", message => {
     }
     let contexts = ["faction leader", "faction officer", "hbc", "giveaway"]
     let roles = ["faction leader", myRole, "faction officer", myRole1, "hbc", myRole2, "giveaway", myRole3]
-    if (context){
+    if (context) {
       console.log("yes")
-      for (var i = 0; i < contexts.length; i++){
+      for (var i = 0; i < contexts.length; i++) {
         let contextvalue = contexts[i]
-        if (context === contextvalue){
+        if (context === contextvalue) {
           console.log('success')
-          for (var o = 0; o < roles.length; o++){
+          for (var o = 0; o < roles.length; o++) {
             let role = roles[o]
-            if(context === role){
+            if (context === role) {
               let role1 = roles[o + 1]
               switcher(role1)
               break;
