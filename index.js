@@ -217,28 +217,24 @@ bot.on("message", message => {
           break;
       }
     }
-    if (context === "faction leader") {
+    if (context === "faction leader"){
       switcher(myRole)
     } else
-    if (context === "faction officer") {
+    if (context === "faction officer"){
       switcher(myRole1)
     } else
-    if (context === "hbc") {
+    if (context === "hbc"){
       switcher(myRole2)
-    } else {
-      message.channel.send(`Invalid Role`)
     } else
-    if (context === "hudson's bay company") {
+    if (context === "hudson bay company"){
       switcher(myRole2)
-    } else {
-      message.channel.send(`Invalid Role`)
     } else
-    if (context === "hudson bay company") {
+    if (context === "hudson's bay company"){
       switcher(myRole2)
-    } else {
-      message.channel.send(`Invalid Role`)
+    } else
+    if (context === "hudsons bay company"){
+      switcher(myRole2)
     }
-  }
 });
 
 bot.on("error", (e) => console.error(e));
