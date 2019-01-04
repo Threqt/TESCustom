@@ -10,12 +10,6 @@ const bot = new Discord.Client({
   disableEverybody: true
 })
 
-bot.on(`guildMemberAdd`, member => {
-  console.log(`User ` + member.user.username + ` has joined`)
-  var role = member.guild.roles.find('name', 'Reader')
-  member.addRole(role)
-});
-
 bot.on("ready", async () => {
   console.log(`${bot.user.username} is online!`);
   bot.user.setActivity("Akame's sick covers", {
