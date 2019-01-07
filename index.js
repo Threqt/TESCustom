@@ -15,7 +15,7 @@ bot.on(`guildMemberAdd`, member => {
   var role = member.guild.roles.find('name', 'Reader')
   member.addRole(role)
 });
-s
+
 bot.on("ready", async () => {
   console.log(`${bot.user.username} is online!`);
   bot.user.setActivity("Akame's sick covers", {
