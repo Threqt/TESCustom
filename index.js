@@ -18,8 +18,8 @@ bot.on(`guildMemberAdd`, member => {
 
 bot.on("ready", async () => {
   console.log(`${bot.user.username} is online!`);
-  bot.user.setActivity("Akame's sick covers", {
-    type: "LISTENING"
+  bot.user.setActivity("HGC sicko mode HBC", {
+    type: "WATCHING"
   });
 });
 
@@ -43,7 +43,7 @@ bot.on("message", message => {
           .addField(`Created On`, bot.user.createdAt)
           .addField(`Version`, `1.0.0`, true)
           .addField(`Developer`, `Threqt#3799`, true)
-          .setFooter("Prefix: ! | This bot is still in it's early phases | Go check out the latest newspaper too!", bot.user.avatarURL)
+          .setFooter("Prefix: ! | This bot is still in it's early phases | Go clap some HBC for me will ya?!", bot.user.avatarURL)
           .setTimestamp()
           .setColor(000000);
 
@@ -65,7 +65,7 @@ bot.on("message", message => {
           .addField("Region", message.guild.region, true)
           .addField("Total Members", message.guild.memberCount, true)
           .addField("Online Members", online, true)
-          .setFooter("Prefix: ! | This bot is still in it's early phases | Go check out the latest newspaper too!", bot.user.avatarURL)
+          .setFooter("Prefix: ! | This bot is still in it's early phases | Go kill some HBC for me will ya?!", bot.user.avatarURL)
           .setTimestamp();
 
         return message.channel.send(embed2)
