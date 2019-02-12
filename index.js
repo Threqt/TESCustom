@@ -11,15 +11,15 @@ const bot = new Discord.Client({
 })
 
 bot.on(`guildMemberAdd`, member => {
-  console.log(`User ` + member.user.username + ` has joined`)
-  var role = member.guild.roles.find('name', 'Reader')
+  console.log(`User ` + member.user.username + ` has left HBC and join HGC`)
+  var role = member.guild.roles.find('name', 'Selection Process')
   member.addRole(role)
 });
 
 bot.on("ready", async () => {
   console.log(`${bot.user.username} is online!`);
-  bot.user.setActivity("Akame's sick covers", {
-    type: "LISTENING"
+  bot.user.setActivity("HGC go sicko mode", {
+    type: "WATCHING"
   });
 });
 
@@ -39,7 +39,7 @@ bot.on("message", message => {
         const embed = new Discord.RichEmbed()
           .setAuthor(`TES Bot`, bot.user.avatarURL)
           .setThumbnail(bot.user.avatarURL)
-          .addField(`Bot Name`, `TES Bot`, true)
+          .addField(`Bot Name`, `TGS Bot`, true)
           .addField(`Created On`, bot.user.createdAt)
           .addField(`Version`, `1.0.0`, true)
           .addField(`Developer`, `Threqt#3799`, true)
