@@ -70,7 +70,7 @@ bot.on("message", message => {
 
     return message.channel.send(embed2)
   } else
-  if (cmd === `DD`) {
+  if (cmd === `DischargeD`) {
     let hr = message.guild.roles.find("name", "HR")
     if (message.member.roles.has(hr.id)) {
       let member = message.mentions.users.first()
