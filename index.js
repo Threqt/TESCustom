@@ -24,54 +24,69 @@ bot.on("ready", async () => {
 });
 
 bot.on("message", message => {
-      if (message.author.bot) return;
-      // This is where we'll put our code.
-      if (message.content.indexOf(config.prefix) !== 0) return;
+  if (message.author.bot) return;
+  // This is where we'll put our code.
+  if (message.content.indexOf(config.prefix) !== 0) return;
 
-      const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
-      const cmd = args.shift().toLowerCase();
+  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+  const cmd = args.shift().toLowerCase();
 
 
-      if (cmd === `ping`) {
-        return message.channel.send("pong");
-      } else
-      if (cmd === `botinfo`) {
-        const embed = new Discord.RichEmbed()
-          .setAuthor(`TES Bot`, bot.user.avatarURL)
-          .setThumbnail(bot.user.avatarURL)
-          .addField(`Bot Name`, `TES Bot`, true)
-          .addField(`Created On`, bot.user.createdAt)
-          .addField(`Version`, `1.0.0`, true)
-          .addField(`Developer`, `Threqt#3799`, true)
-          .setFooter("Prefix: ! | This bot is still in it's early phases | Go clap some HBC for me will ya?!", bot.user.avatarURL)
-          .setTimestamp()
-          .setColor(000000);
+  if (cmd === `ping`) {
+    return message.channel.send("pong");
+  } else
+  if (cmd === `botinfo`) {
+    const embed = new Discord.RichEmbed()
+      .setAuthor(`TES Bot`, bot.user.avatarURL)
+      .setThumbnail(bot.user.avatarURL)
+      .addField(`Bot Name`, `TES Bot`, true)
+      .addField(`Created On`, bot.user.createdAt)
+      .addField(`Version`, `1.0.0`, true)
+      .addField(`Developer`, `Threqt#3799`, true)
+      .setFooter("Prefix: ! | This bot is still in it's early phases | Go clap some HBC for me will ya?!", bot.user.avatarURL)
+      .setTimestamp()
+      .setColor(000000);
 
-        return message.channel.send(embed)
-      } else
-      if (cmd === `serverinfo`) {
-        let sicon = message.guild.iconURL
-        let online = message.guild.members.filter(m => m.presence.status !== 'offline').size
-        let categories = message.guild.channels.filter(m => m.type === 'category').size
-        let embed2 = new Discord.RichEmbed()
-          .setAuthor("TES Bot", bot.user.avatarURL)
-          .setThumbnail(sicon)
-          .addField("Owner", message.guild.owner, true)
-          .addField("Created", message.guild.createdAt, true)
-          .addField("Join Date", message.guild.joinedAt, true)
-          .addField("Roles", message.guild.roles.size, true)
-          .addField("Channels", message.guild.channels.size, true)
-          .addField("Categories", categories, true)
-          .addField("Region", message.guild.region, true)
-          .addField("Total Members", message.guild.memberCount, true)
-          .addField("Online Members", online, true)
-          .setFooter("Prefix: ! | This bot is still in it's early phases | Go kill some HBC for me will ya?!", bot.user.avatarURL)
-          .setTimestamp();
+    return message.channel.send(embed)
+  } else
+  if (cmd === `serverinfo`) {
+    let sicon = message.guild.iconURL
+    let online = message.guild.members.filter(m => m.presence.status !== 'offline').size
+    let categories = message.guild.channels.filter(m => m.type === 'category').size
+    let embed2 = new Discord.RichEmbed()
+      .setAuthor("TES Bot", bot.user.avatarURL)
+      .setThumbnail(sicon)
+      .addField("Owner", message.guild.owner, true)
+      .addField("Created", message.guild.createdAt, true)
+      .addField("Join Date", message.guild.joinedAt, true)
+      .addField("Roles", message.guild.roles.size, true)
+      .addField("Channels", message.guild.channels.size, true)
+      .addField("Categories", categories, true)
+      .addField("Region", message.guild.region, true)
+      .addField("Total Members", message.guild.memberCount, true)
+      .addField("Online Members", online, true)
+      .setFooter("Prefix: ! | This bot is still in it's early phases | Go kill some HBC for me will ya?!", bot.user.avatarURL)
+      .setTimestamp();
 
-        return message.channel.send(embed2)
-      }
-      });
+    return message.channel.send(embed2)
+  } else
+  if (cmd === `DD`) {
+    let hr = message.guild.roles.find("name", "HR")
+    if (message.member.roles.has(hr.id)) {
+      let member = message.mentions.users.first()
+      if (!member) return message.reply("Invalid User");
+      member = message.guild.member(message.mentions.users.first())
+      let reason = args.slice(message.mentions.users.size).join(' ')
+      message.reply(`${member} has been DD'ed from HGC because ${reason}!`)
+      member.kick()
+    } else {
+      message.reply("Insufficient Permissions")
+    }
+  }
+});
 
-    bot.on("error", (e) => console.error(e)); bot.on("warn", (e) => console.warn(e)); bot.on("debug", (e) => console.info(e));
+bot.on("error", (e) => console.error(e));
+bot.on("warn", (e) => console.warn(e));
+bot.on("debug", (e) => console.info(e));
 
-    bot.login(process.env.token);
+bot.login(process.env.token);
