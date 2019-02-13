@@ -66,8 +66,13 @@ bot.on("message", message => {
     return message.channel.send(embed2)
   } else
   if (cmd === `discharge`) {
-    let hr = message.guild.roles.find("name", "HR")
-    if(!message.member.roles.has(hr.id)){
+    let hr = message.guild.roles.find("name", "0GR Command")
+    let hr1 = message.guild.roles.find("name", "7GR Command")
+    let hr2 = message.guild.roles.find("name", "69GR Command")
+    let hr3 = message.guild.roles.find("name", "6GR Command")
+    let hr4 = message.guild.roles.find("name", "Anal Command")
+    let hr5 = message.guild.roles.find("name", "Jew Command")
+    if(!message.member.roles.has(hr.id || hr1.id || hr2.id || hr3.id || hr4.id || hr5.id)){
       return message.reply("Insufficient Permissions.").catch(console.error)
     }
     if(message.mentions.users.size === 0){
