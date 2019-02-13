@@ -1,10 +1,5 @@
 const config = require("./botconfig")
 const Discord = require("discord.js");
-let journstatus = true
-let journastatus = true
-let bountyhstatus = true
-let bountyrstatus = true
-let merchantapp = true
 
 const bot = new Discord.Client({
   disableEverybody: true
@@ -72,16 +67,20 @@ bot.on("message", message => {
   } else
   if (cmd === `DischargeD`) {
     let hr = message.guild.roles.find("name", "HR")
-    if (message.member.roles.has(hr.id)) {
-      let member = message.mentions.users.first()
-      if (!member) return message.reply("Invalid User");
-      member = message.guild.member(message.mentions.users.first())
-      let reason = args.slice(message.mentions.users.size).join(' ')
-      message.reply(`${member} has been DD'ed from HGC because ${reason}!`)
-      member.kick()
-    } else {
-      message.reply("Insufficient Permissions")
+    if(!message.member.roles.has(hr.id)){
+      return message.reply("Insufficient Permissions.")
     }
+    if(message.mentions.users.size === 0){
+      return message.reply("Please mention an user.")
+    }
+    let kickMemb = message.guild.member(message.mentions.users.first())
+    let reason = args.slice(message.mentions.users.size).join(' ')
+    if(!kickMemb){
+      return message.reply("Please mention a valid user.")
+    }
+    kickMemb.kick().then(member => {
+      return message.reply(`${kickMemb} has been DD'ed for ${reason}!`)
+    })
   }
 });
 
