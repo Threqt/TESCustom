@@ -83,6 +83,9 @@ bot.on("message", message => {
     if(!kickMemb){
       return message.reply("Please mention a valid user.").catch(console.error)
     }
+    if(kickMemb.hasPermission("MANAGE_MESSAGES")){
+      return message.reply("Cannot kick this person!")
+    }
     kickMemb.kick().then(member => {
       return message.reply(`${kickMemb} has been DD'ed for ${reason}!`).catch(console.error)
     })
