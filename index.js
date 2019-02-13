@@ -65,21 +65,21 @@ bot.on("message", message => {
 
     return message.channel.send(embed2)
   } else
-  if (cmd === `DischargeD`) {
+  if (cmd === `Discharge`) {
     let hr = message.guild.roles.find("name", "HR")
     if(!message.member.roles.has(hr.id)){
-      return message.reply("Insufficient Permissions.")
+      return message.reply("Insufficient Permissions.").catch(console.error)
     }
     if(message.mentions.users.size === 0){
-      return message.reply("Please mention an user.")
+      return message.reply("Please mention an user.").catch(console.error)
     }
     let kickMemb = message.guild.member(message.mentions.users.first())
     let reason = args.slice(message.mentions.users.size).join(' ')
     if(!kickMemb){
-      return message.reply("Please mention a valid user.")
+      return message.reply("Please mention a valid user.").catch(console.error)
     }
     kickMemb.kick().then(member => {
-      return message.reply(`${kickMemb} has been DD'ed for ${reason}!`)
+      return message.reply(`${kickMemb} has been DD'ed for ${reason}!`).catch(console.error)
     })
   }
 });
