@@ -83,8 +83,23 @@ bot.on("message", message => {
     if(kickMemb.hasPermission("MANAGE_MESSAGES")){
       return message.reply("Cannot kick this person!").catch(console.error)
     }
+    let kickEmbed = new Discord.RichEmbed()
+    let sicon = message.guild.iconURL
+    .setAuthor("TES Bot", bot.user.avatarURL)
+    .setThumbnail(sicon)
+    .setTitle(`DISCHARGE BY <@${message.author.id}>`)
+    .setDescription(`LOG`)
+    .addField("Discharged Person:", kickMemb.user.username, true)
+    .addField("Reason:", reason, true)
+    .addField("Discharge Channel:", message.channel, true)
+    .addField("Time:", message.createdAt, true)
+    .setFooter("Prefix: ! | This bot is still in it's early phases | Go kill some HBC for me will ya?!", bot.user.avatarURL)
+    .setTimestamp();
+
     kickMemb.kick().then(member => {
       return message.reply(`${kickMemb} has been DD'ed for ${reason}!`).catch(console.error)
+      let channel = message.guild.channels.find(`name`, `discharge-logs`)
+      channel.send(kickEmbed);
     })
   }
 });
