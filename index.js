@@ -66,14 +66,8 @@ bot.on("message", message => {
     return message.channel.send(embed2)
   } else
   if (cmd === `discharge`) {
-    let hr = message.guild.roles.find("name", "0GR Command")
-    let hr1 = message.guild.roles.find("name", "7GR Command")
-    let hr2 = message.guild.roles.find("name", "69GR Command")
-    let hr3 = message.guild.roles.find("name", "6GR Command")
-    let hr4 = message.guild.roles.find("name", "Anal Command")
-    let hr5 = message.guild.roles.find("name", "Jew Command")
-    if(!message.member.roles.has(hr.id || hr1.id || hr2.id || hr3.id || hr4.id || hr5.id)){
-      return message.reply("Insufficient Permissions.").catch(console.error)
+    if(!message.member.hasPermission("MANAGE_MESSAGES")){
+      return message.reply("Insufficient Permissions").catch(console.error)
     }
     if(message.mentions.users.size === 0){
       return message.reply("Please mention an user.").catch(console.error)
@@ -83,8 +77,11 @@ bot.on("message", message => {
     if(!kickMemb){
       return message.reply("Please mention a valid user.").catch(console.error)
     }
+    if(!reason){
+      return message.reply("Reason invalid.").catch(console.error)
+    }
     if(kickMemb.hasPermission("MANAGE_MESSAGES")){
-      return message.reply("Cannot kick this person!")
+      return message.reply("Cannot kick this person!").catch(console.error)
     }
     kickMemb.kick().then(member => {
       return message.reply(`${kickMemb} has been DD'ed for ${reason}!`).catch(console.error)
