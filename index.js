@@ -67,21 +67,21 @@ bot.on("message", message => {
   } else
   if (cmd === `discharge`) {
     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
-      return message.reply("Insufficient Permissions").catch(console.error)
+      return message.reply("Insufficient Permissions").then(r => r.delete(5000));
     }
     if (message.mentions.users.size === 0) {
-      return message.reply("Please mention an user.").catch(console.error)
+      return message.reply("Please mention an user.").then(r => r.delete(5000));
     }
     let kickMemb = message.guild.member(message.mentions.users.first())
     let reason = args.slice(message.mentions.users.size).join(' ')
     if (!kickMemb) {
-      return message.reply("Please mention a valid user.").catch(console.error)
+      return message.reply("Please mention a valid user.").then(r => r.delete(5000));
     }
     if (!reason) {
-      return message.reply("Reason invalid.").catch(console.error)
+      return message.reply("Reason invalid.").then(r => r.delete(5000));
     }
     if (kickMemb.hasPermission("MANAGE_MESSAGES")) {
-      return message.reply("Cannot kick this person!").catch(console.error)
+      return message.reply("Cannot kick this person!").then(r => r.delete(5000));
     }
     let sicon = message.guild.iconURL
     let kickEmbed = new Discord.RichEmbed()
@@ -97,9 +97,32 @@ bot.on("message", message => {
       .setTimestamp();
 
     kickMemb.kick().then(member => {
-      message.reply(`${kickMemb} has been DD'ed for ${reason}!`).catch(console.error)
+      message.reply(`${kickMemb} has been DD'ed for ${reason}!`).then(r => r.delete(5000));
       let channel = message.guild.channels.find(`name`, `discharge-logs`)
       channel.send(kickEmbed);
+    })
+  } else
+  if(cmd === `role`){
+    if(!message.member.hasPermission("MANAGE_MESSAGES")){
+      return message.reply("Insufficient Permissions").then(r => r.delete(5000))
+    }
+    if(message.mentions.users.size === 0){
+      return message.reply("Please mention an user.").then(r => r.delete(5000))
+    }
+    let roleMemb = message.guild.member(message.mentions.users.first())
+    let role = args.slice(message.mentions.users.size).join(' ')
+    let realRole = message.guild.roles.find(`name`, role)
+    if(!roleMemb){
+      return message.reply("Please mention a valid user.").then(r => r.delete(5000))
+    }
+    if(roleMemb.hasPermission("MANAGE_MESSAGES")){
+      return message.reply("Cannot add roles to this user.").then(r => r.delete(5000))
+    }
+    if(!realRole){
+      return message.reply("Invalid Role.").then(r => r.delete(5000))
+    }
+    roleMemb.addRole(realRole.id).then(memb => {
+      return message.reply(`Successfully added the role ${realRole.name} to ${roleMemb.user.username}!`).then(r => r.delete(5000))
     })
   }
 });
