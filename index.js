@@ -66,38 +66,38 @@ bot.on("message", message => {
     return message.channel.send(embed2)
   } else
   if (cmd === `discharge`) {
-    if(!message.member.hasPermission("MANAGE_MESSAGES")){
+    if (!message.member.hasPermission("MANAGE_MESSAGES")) {
       return message.reply("Insufficient Permissions").catch(console.error)
     }
-    if(message.mentions.users.size === 0){
+    if (message.mentions.users.size === 0) {
       return message.reply("Please mention an user.").catch(console.error)
     }
     let kickMemb = message.guild.member(message.mentions.users.first())
     let reason = args.slice(message.mentions.users.size).join(' ')
-    if(!kickMemb){
+    if (!kickMemb) {
       return message.reply("Please mention a valid user.").catch(console.error)
     }
-    if(!reason){
+    if (!reason) {
       return message.reply("Reason invalid.").catch(console.error)
     }
-    if(kickMemb.hasPermission("MANAGE_MESSAGES")){
+    if (kickMemb.hasPermission("MANAGE_MESSAGES")) {
       return message.reply("Cannot kick this person!").catch(console.error)
     }
-    let kickEmbed = new Discord.RichEmbed()
     let sicon = message.guild.iconURL
-    .setAuthor("TES Bot", bot.user.avatarURL)
-    .setThumbnail(sicon)
-    .setTitle(`DISCHARGE BY <@${message.author.id}>`)
-    .setDescription(`LOG`)
-    .addField("Discharged Person:", kickMemb.user.username, true)
-    .addField("Reason:", reason, true)
-    .addField("Discharge Channel:", message.channel, true)
-    .addField("Time:", message.createdAt, true)
-    .setFooter("Prefix: ! | This bot is still in it's early phases | Go kill some HBC for me will ya?!", bot.user.avatarURL)
-    .setTimestamp();
+    let kickEmbed = new Discord.RichEmbed()
+      .setAuthor("TES Bot", bot.user.avatarURL)
+      .setThumbnail(sicon)
+      .setTitle(`DISCHARGE BY <@${message.author.id}>`)
+      .setDescription(`LOG`)
+      .addField("Discharged Person:", kickMemb.user.username, true)
+      .addField("Reason:", reason, true)
+      .addField("Discharge Channel:", message.channel, true)
+      .addField("Time:", message.createdAt, true)
+      .setFooter("Prefix: ! | This bot is still in it's early phases | Go kill some HBC for me will ya?!", bot.user.avatarURL)
+      .setTimestamp();
 
     kickMemb.kick().then(member => {
-      return message.reply(`${kickMemb} has been DD'ed for ${reason}!`).catch(console.error)
+      message.reply(`${kickMemb} has been DD'ed for ${reason}!`).catch(console.error)
       let channel = message.guild.channels.find(`name`, `discharge-logs`)
       channel.send(kickEmbed);
     })
