@@ -102,68 +102,27 @@ bot.on("message", message => {
       channel.send(kickEmbed);
     })
   } else
-  if (cmd === `promote`) {
+  if (cmd === `addrole`) {
     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
       return message.reply("Insufficient Permissions.").then(r => r.delete(5000))
     }
-    let str = message.content.indexOf(".")
-    if (str === -1) {
-      return message.reply("Invalid First Argument.").then(r => r.delete(5000))
-    }
-    let str1 = message.content.slice(8, str)
-    if (str1.search("<@") === -1) {
+    if(message.mentions.users.size === 0){
       return message.reply("Please mention a user.").then(r => r.delete(5000))
     }
-    let str2 = message.content.slice(str + 1, message.length)
-    let str3 = str2.indexOf(".")
-    if (str3 === -1) {
-      return message.reply("Invalid Second Argument.").then(r => r.delete(5000))
+    let roleMember = message.guild.member(message.mentions.users.first())
+    if(!roleMember){
+      return message.reply("Invalid Member")
     }
-    let str4 = str2.slice(0, str3)
-    let str5 = str2.slice(str3 + 1, str2.length)
-    let str6 = str5.indexOf(".")
-    if (str6 === -1) {
-      return message.reply("Invalid Third Argument.").then(r => r.delete(5000))
+    let role = args.slice(message.mentions.members.size).join(' ')
+    if(!role){
+      return message.reply('Please add a role.')
     }
-    let str7 = str5.slice(0, str6)
-    let str8 = str5.slice(str6 + 1, str5.length)
-    if (str8.length === 0) {
-      return message.reply("Invalid Fifth Argument.").then(r => r.delete(5000))
-    }
-    console.log(str1)
-
-    if (message.mentions.users.size === 0) {
-      return message.reply("Please mention an user.").then(r => r.delete(5000));
-    }
-    let roleMemb = message.guild.member(message.mentions.users.first())
-    if (!roleMemb) {
-      return message.reply("Please mention a valid user.").then(r => r.delete(5000))
-    }
-    if (roleMemb.user.username === message.author.username) {
-      return message.reply("Please do not mention yourself.").then(r => r.delete(5000))
-    }
-    let oldrole = message.guild.roles.find('name', str4)
-    if (!oldrole) {
-      return message.reply("Please mention a valid role.").then(r => r.delete(5000))
-    }
-    let newrole = message.guild.roles.find('name', str7)
-    if (!newrole) {
-      return message.reply("Please mention a valid role.").then(r => r.delete(5000))
-    }
-    if (newrole.position >= message.member.highestRole.position) {
-      return message.reply("This role is too high to be added.").then(r => r.delete(5000))
-    }
-    if (newrole.position < oldrole.position) {
-      return message.reply("This is for adding, not removing roles.").then(r => r.delete(5000))
-    }
-    if (roleMemb.roles.has(newrole.id)) {
-      return message.reply("User already has this role.").then(r => r.delete(5000))
-    }
-    if (!roleMemb.roles.has(oldrole.id)) {
-      return message.reply("User doesen't have old role.").then(r => r.delete(5000))
+    let realrole = message.guild.roles.find(`name`, role)
+    if(!realrole){
+      return message.reply("Please add a valid role")
     }
     if (roleMemb.hasPermission("MANAGE_MESSAGES")) {
-      return message.reply("You do not have permission to add roles to this user.").then(r => r.delete(5000))
+      return message.reply("Cannot role this person!").then(r => r.delete(5000));
     }
     let sicon = message.guild.iconURL
     let roleEmbed = new Discord.RichEmbed()
@@ -171,78 +130,41 @@ bot.on("message", message => {
       .setThumbnail(sicon)
       .setTitle(`PROMOTION BY ` + message.author.username)
       .setDescription(`LOG`)
-      .addField("Promoted Person:", roleMemb.user.username, true)
-      .addField("Old Role:", oldrole.name, true)
-      .addField("New Role:", newrole.name, true)
-      .addField("Reason:", str8, true)
+      .addField("Promoted Person:", roleMember.user.username, true)
+      .addField("Role Added:", realrole.name, true)
       .addField("Promoted Channel:", message.channel, true)
       .addField("Time:", message.createdAt, true)
       .setFooter("Prefix: ! | This bot is still in it's early phases | Go kill some HBC for me will ya?!", bot.user.avatarURL)
       .setTimestamp();
 
-    roleMemb.addRole(newrole.id).then(messag => {
-      message.reply(`${message.author.username} has promoted ${roleMemb.user.username} from ${oldrole.name} to ${newrole.name} because ${str8}`)
+    roleMemb.addRole(realrole.id).then(messag => {
+      message.reply(`${message.author.username} has promoted ${roleMember.user.username} to ${realrole.name}`)
       let channel = message.guild.channels.find(`name`, `promotion-logs`)
       channel.send(roleEmbed);
     })
-    roleMemb.removeRole(oldrole.id)
+  }
   } else
-  if (cmd === `demote`) {
+  if (cmd === `removerole`) {
     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
       return message.reply("Insufficient Permissions.").then(r => r.delete(5000))
     }
-    let str = message.content.indexOf(".")
-    if (str === -1) {
-      return message.reply("Invalid First Argument.").then(r => r.delete(5000))
-    }
-    let str1 = message.content.slice(8, str)
-    if (str1.search("<@") === -1) {
+    if(message.mentions.users.size === 0){
       return message.reply("Please mention a user.").then(r => r.delete(5000))
     }
-    let str2 = message.content.slice(str + 1, message.length)
-    let str3 = str2.indexOf(".")
-    if (str3 === -1) {
-      return message.reply("Invalid Second Argument.").then(r => r.delete(5000))
+    let roleMember = message.guild.member(message.mentions.users.first())
+    if(!roleMember){
+      return message.reply("Invalid Member")
     }
-    let str4 = str2.slice(0, str3)
-    let str5 = str2.slice(str3 + 1, str2.length)
-    let str6 = str5.indexOf(".")
-    if (str6 === -1) {
-      return message.reply("Invalid Third Argument.").then(r => r.delete(5000))
+    let role = args.slice(message.mentions.members.size).join(' ')
+    if(!role){
+      return message.reply('Please add a role.')
     }
-    let str7 = str5.slice(0, str6)
-    let str8 = str5.slice(str6 + 1, str5.length)
-    if (str8.length === 0) {
-      return message.reply("Invalid Fifth Argument.").then(r => r.delete(5000))
+    let realrole = message.guild.roles.find(`name`, role)
+    if(!realrole){
+      return message.reply("Please add a valid role")
     }
-    console.log(str1)
-
-    if (message.mentions.users.size === 0) {
-      return message.reply("Please mention an user.").then(r => r.delete(5000));
-    }
-    let roleMemb = message.guild.member(message.mentions.users.first())
-    if (!roleMemb) {
-      return message.reply("Please mention a valid user.").then(r => r.delete(5000))
-    }
-    if (roleMemb.user.username === message.author.username) {
-      return message.reply("Please do not mention yourself.").then(r => r.delete(5000))
-    }
-    let oldrole = message.guild.roles.find('name', str4)
-    if (!oldrole) {
-      return message.reply("Please mention a valid role.").then(r => r.delete(5000))
-    }
-    let newrole = message.guild.roles.find('name', str7)
-    if (!newrole) {
-      return message.reply("Please mention a valid role.").then(r => r.delete(5000))
-    }
-    if (newrole.position > oldrole.position) {
-      return message.reply("This is for removing, not adding roles.").then(r => r.delete(5000))
-    }
-    if (roleMemb.roles.has(newrole.id)) {
-      return message.reply("User already has this role.")
-    }
-    if (!roleMemb.roles.has(oldrole.id)) {
-      return message.reply("User doesen't have old role.")
+    if (roleMemb.hasPermission("MANAGE_MESSAGES")) {
+      return message.reply("Cannot role this person!").then(r => r.delete(5000));
     }
     let sicon = message.guild.iconURL
     let roleEmbed = new Discord.RichEmbed()
@@ -250,21 +172,18 @@ bot.on("message", message => {
       .setThumbnail(sicon)
       .setTitle(`DEMOTION BY ` + message.author.username)
       .setDescription(`LOG`)
-      .addField("Demoted Person:", roleMemb.user.username, true)
-      .addField("Old Role:", oldrole.name, true)
-      .addField("New Role:", newrole.name, true)
-      .addField("Reason:", str8, true)
-      .addField("Demoted Channel:", message.channel, true)
+      .addField("Demoted Person:", roleMember.user.username, true)
+      .addField("Role Removed:", realrole.name, true)
+      .addField("Demotion Channel:", message.channel, true)
       .addField("Time:", message.createdAt, true)
       .setFooter("Prefix: ! | This bot is still in it's early phases | Go kill some HBC for me will ya?!", bot.user.avatarURL)
       .setTimestamp();
 
-    roleMemb.addRole(newrole.id).then(messag => {
-      message.reply(`${message.author.username} has demoted ${roleMemb.user.username} from ${oldrole.name} to ${newrole.name} because ${str8}`)
+    roleMemb.removeRole(realrole.id).then(messag => {
+      message.reply(`${message.author.username} has promoted ${roleMember.user.username} to ${realrole.name}`)
       let channel = message.guild.channels.find(`name`, `demotion-logs`)
       channel.send(roleEmbed);
     })
-    roleMemb.removeRole(oldrole.id)
   }
 });
 
