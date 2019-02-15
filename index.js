@@ -97,7 +97,7 @@ bot.on("message", message => {
       .setTimestamp();
 
     kickMemb.kick().then(member => {
-      message.reply(`${kickMemb} has been DD'ed for ${reason}!`).then(r => r.delete(5000));
+      message.reply(`${kickMemb} has been DD'ed for ${reason}!`)
       let channel = message.guild.channels.find(`name`, `discharge-logs`)
       channel.send(kickEmbed);
     })
@@ -122,7 +122,7 @@ bot.on("message", message => {
       return message.reply("Invalid Role.").then(r => r.delete(5000))
     }
     roleMemb.addRole(realRole.id).then(memb => {
-      return message.reply(`Successfully added the role ${realRole.name} to ${roleMemb.user.username}!`).then(r => r.delete(5000))
+      return message.reply(`Successfully added the role ${realRole.name} to ${roleMemb.user.username}!`)
     })
   }
 });
