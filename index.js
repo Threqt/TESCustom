@@ -142,7 +142,6 @@ bot.on("message", message => {
       let channel = message.guild.channels.find(`name`, `promotion-logs`)
       channel.send(roleEmbed);
     })
-  }
   } else
   if (cmd === `removerole`) {
     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
