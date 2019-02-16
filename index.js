@@ -121,7 +121,7 @@ bot.on("message", message => {
     if(!realrole){
       return message.reply("Please add a valid role")
     }
-    if (roleMemb.hasPermission("MANAGE_MESSAGES")) {
+    if (roleMember.hasPermission("MANAGE_MESSAGES")) {
       return message.reply("Cannot role this person!").then(r => r.delete(5000));
     }
     let sicon = message.guild.iconURL
@@ -137,7 +137,7 @@ bot.on("message", message => {
       .setFooter("Prefix: ! | This bot is still in it's early phases | Go kill some HBC for me will ya?!", bot.user.avatarURL)
       .setTimestamp();
 
-    roleMemb.addRole(realrole.id).then(messag => {
+    roleMember.addRole(realrole.id).then(messag => {
       message.reply(`${message.author.username} has promoted ${roleMember.user.username} to ${realrole.name}`)
       let channel = message.guild.channels.find(`name`, `promotion-logs`)
       channel.send(roleEmbed);
@@ -162,7 +162,7 @@ bot.on("message", message => {
     if(!realrole){
       return message.reply("Please add a valid role")
     }
-    if (roleMemb.hasPermission("MANAGE_MESSAGES")) {
+    if (roleMember.hasPermission("MANAGE_MESSAGES")) {
       return message.reply("Cannot role this person!").then(r => r.delete(5000));
     }
     let sicon = message.guild.iconURL
@@ -178,7 +178,7 @@ bot.on("message", message => {
       .setFooter("Prefix: ! | This bot is still in it's early phases | Go kill some HBC for me will ya?!", bot.user.avatarURL)
       .setTimestamp();
 
-    roleMemb.removeRole(realrole.id).then(messag => {
+    roleMember.removeRole(realrole.id).then(messag => {
       message.reply(`${message.author.username} has promoted ${roleMember.user.username} to ${realrole.name}`)
       let channel = message.guild.channels.find(`name`, `demotion-logs`)
       channel.send(roleEmbed);
