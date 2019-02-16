@@ -111,15 +111,15 @@ bot.on("message", message => {
     }
     let roleMember = message.guild.member(message.mentions.users.first())
     if(!roleMember){
-      return message.reply("Invalid Member")
+      return message.reply("Invalid Member").then(r => r.delete(5000))
     }
     let role = args.slice(message.mentions.members.size).join(' ')
     if(!role){
-      return message.reply('Please add a role.')
+      return message.reply('Please add a role.').then(r => r.delete(5000))
     }
     let realrole = message.guild.roles.find(`name`, role)
     if(!realrole){
-      return message.reply("Please add a valid role")
+      return message.reply("Please add a valid role").then(r => r.delete(5000))
     }
     if (roleMember.hasPermission("MANAGE_MESSAGES")) {
       return message.reply("Cannot role this person!").then(r => r.delete(5000));
@@ -152,15 +152,15 @@ bot.on("message", message => {
     }
     let roleMember = message.guild.member(message.mentions.users.first())
     if(!roleMember){
-      return message.reply("Invalid Member")
+      return message.reply("Invalid Member").then(r => r.delete(5000))
     }
     let role = args.slice(message.mentions.members.size).join(' ')
     if(!role){
-      return message.reply('Please add a role.')
+      return message.reply('Please add a role.').then(r => r.delete(5000))
     }
     let realrole = message.guild.roles.find(`name`, role)
     if(!realrole){
-      return message.reply("Please add a valid role")
+      return message.reply("Please add a valid role").then(r => r.delete(5000))
     }
     if (roleMember.hasPermission("MANAGE_MESSAGES")) {
       return message.reply("Cannot role this person!").then(r => r.delete(5000));
@@ -182,6 +182,28 @@ bot.on("message", message => {
       message.reply(`${message.author.username} has demoted ${roleMember.user.username} to ${realrole.name}`)
       let channel = message.guild.channels.find(`name`, `demotion-logs`)
       channel.send(roleEmbed);
+    })
+  } else
+  if (cmd === `nick`) {
+    if (!message.member.hasPermission("MANAGE_MESSAGES")) {
+      return message.reply("Insufficient Permissions.").then(r => r.delete(5000))
+    }
+    if(message.mentions.users.size === 0){
+      return message.reply("Please mention a user.").then(r => r.delete(5000))
+    }
+    let roleMember = message.guild.member(message.mentions.users.first())
+    if(!roleMember){
+      return message.reply("Invalid Member").then(r => r.delete(5000))
+    }
+    let role = args.slice(message.mentions.members.size).join(' ')
+    if(!role){
+      return message.reply('Please add a nickname.').then(r => r.delete(5000))
+    }
+    if (roleMember.hasPermission("MANAGE_MESSAGES")) {
+      return message.reply("Cannot nickname this person!").then(r => r.delete(5000));
+    }
+    roleMember.setNickname(role).then(messag => {
+      return message.reply(`${message.author.username} has changed ${roleMember.user.username}'s nickname to ${role}`)
     })
   }
 });
