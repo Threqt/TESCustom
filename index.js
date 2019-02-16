@@ -179,7 +179,7 @@ bot.on("message", message => {
       .setTimestamp();
 
     roleMember.removeRole(realrole.id).then(messag => {
-      message.reply(`${message.author.username} has promoted ${roleMember.user.username} to ${realrole.name}`)
+      message.reply(`${message.author.username} has demoted ${roleMember.user.username} to ${realrole.name}`)
       let channel = message.guild.channels.find(`name`, `demotion-logs`)
       channel.send(roleEmbed);
     })
