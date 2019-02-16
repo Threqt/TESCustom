@@ -184,7 +184,7 @@ bot.on("message", message => {
       channel.send(roleEmbed);
     })
   } else
-  if (cmd === `nick`) {
+  if (cmd === `nickname`) {
     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
       return message.reply("Insufficient Permissions.").then(r => r.delete(5000))
     }
