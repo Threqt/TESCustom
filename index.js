@@ -124,6 +124,9 @@ bot.on("message", message => {
     if (roleMember.hasPermission("MANAGE_MESSAGES")) {
       return message.reply("Cannot role this person!").then(r => r.delete(5000));
     }
+    if(realrole.position < roleMember.highestRole.position){
+      return message.reply("Incorrect usage of command")
+    }
     let sicon = message.guild.iconURL
     let roleEmbed = new Discord.RichEmbed()
       .setAuthor("TES Bot", bot.user.avatarURL)
@@ -138,7 +141,7 @@ bot.on("message", message => {
       .setTimestamp();
 
     roleMember.addRole(realrole.id).then(messag => {
-      message.reply(`${message.author.username} has promoted ${roleMember.user.username} to ${realrole.name}`)
+      message.reply(`${message.author.username} has added the role ${realrole.name} from ${roleMember.user.username}`)
       let channel = message.guild.channels.find(`name`, `promotion-logs`)
       channel.send(roleEmbed);
     })
@@ -179,7 +182,7 @@ bot.on("message", message => {
       .setTimestamp();
 
     roleMember.removeRole(realrole.id).then(messag => {
-      message.reply(`${message.author.username} has demoted ${roleMember.user.username} to ${realrole.name}`)
+      message.reply(`${message.author.username} has removed the role ${realrole.name} from ${roleMember.user.username}`)
       let channel = message.guild.channels.find(`name`, `demotion-logs`)
       channel.send(roleEmbed);
     })
