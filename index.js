@@ -121,7 +121,7 @@ bot.on("message", message => {
     if(!realrole){
       return message.reply("Please add a valid role").then(r => r.delete(5000))
     }
-    if (roleMember.hasPermission("MANAGE_MESSAGES")) {
+    if (roleMember.highestRole.position > message.member.highestRole.position){
       return message.reply("Cannot role this person!").then(r => r.delete(5000));
     }
     if(realrole.position < roleMember.highestRole.position){
@@ -165,7 +165,7 @@ bot.on("message", message => {
     if(!realrole){
       return message.reply("Please add a valid role").then(r => r.delete(5000))
     }
-    if (roleMember.hasPermission("MANAGE_MESSAGES")) {
+    if (roleMember.highestRole.position > message.member.highestRole.position){
       return message.reply("Cannot role this person!").then(r => r.delete(5000));
     }
     let sicon = message.guild.iconURL
