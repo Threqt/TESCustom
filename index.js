@@ -124,9 +124,6 @@ bot.on("message", message => {
     if (roleMember.highestRole.position > message.member.highestRole.position){
       return message.reply("Cannot role this person!").then(r => r.delete(5000));
     }
-    if(realrole.position < roleMember.highestRole.position){
-      return message.reply("Incorrect usage of command")
-    }
     let sicon = message.guild.iconURL
     let roleEmbed = new Discord.RichEmbed()
       .setAuthor("TES Bot", bot.user.avatarURL)
