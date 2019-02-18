@@ -138,7 +138,7 @@ bot.on("message", message => {
       .setTimestamp();
 
     roleMember.addRole(realrole.id).then(messag => {
-      message.reply(`${message.author.username} has added the role ${realrole.name} from ${roleMember.user.username}`)
+      message.reply(`${message.author.username} has added the role ${realrole.name} to ${roleMember.user.username}`)
       let channel = message.guild.channels.find(`name`, `promotion-logs`)
       channel.send(roleEmbed);
     })
