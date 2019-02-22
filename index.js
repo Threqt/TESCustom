@@ -65,7 +65,7 @@ bot.on("message", message => {
 
     return message.channel.send(embed2)
   } else
-  if (cmd === `discharge`) {
+  if (cmd === `ddischarge`) {
     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
       return message.reply("Insufficient Permissions").then(r => r.delete(5000));
     }
@@ -80,14 +80,14 @@ bot.on("message", message => {
     if (!reason) {
       return message.reply("Reason invalid.").then(r => r.delete(5000));
     }
-    if (kickMemb.hasPermission("MANAGE_MESSAGES")) {
-      return message.reply("Cannot kick this person!").then(r => r.delete(5000));
+    if (kickMemb.highestRole.position > message.member.highestRole.position){
+      return message.reply("Cannot role this person!").then(r => r.delete(5000));
     }
     let sicon = message.guild.iconURL
     let kickEmbed = new Discord.RichEmbed()
       .setAuthor("TES Bot", bot.user.avatarURL)
       .setThumbnail(sicon)
-      .setTitle(`DISCHARGE BY ` + message.author.username)
+      .setTitle(`DISHONORABLLE DISCHARGE BY ` + message.author.username)
       .setDescription(`LOG`)
       .addField("Discharged Person:", kickMemb.user.username, true)
       .addField("Reason:", reason, true)
@@ -227,6 +227,45 @@ bot.on("message", message => {
     roleMember.setNickname(role).then(messag => {
       return message.reply(`${message.author.username} has changed ${roleMember.user.username}'s nickname to ${role}`)
     })
+  } else
+  if(cmd === `gdischarge`){
+    if(!message.member.hasPermission("MANAGE_MESSAGES")){
+      return message.reply("Insufficient Permissions").then(r = r.delete(5000));
+    }
+    if(message.mentions.users.size === 0){
+      return message.reply("Please mention an user.").then(r = r.delete(5000));
+    }
+    let kickMemb = message.guild.member(message.mentions.users.first())
+    let reason = args.slice(message.mentions.users.size).join(' ')
+    if(!kickMemb){
+      return message.reply("Please mention a valid user.").then(r = r.delete(5000));
+    }
+    if(!reason){
+      return message.reply("Reason invalid.").then(r = r.delete(5000));
+    }
+    if (kickMemb.highestRole.position > message.member.highestRole.position){
+      return message.reply("Cannot role this person!").then(r => r.delete(5000));
+    }
+    let sicon = message.guild.iconURL
+    let kickEmbed = new Discord.RichEmbed()
+    .setAuthor("TES Bot", bot.user.avatarURL)
+    .setThumbnail(sicon)
+    .setTitle(`GENERAL DISCHARGE BY <@${message.author.id}>`)
+    .setDescription(`LOG`)
+    .addField("Discharged Person:", kickMemb.user.username, true)
+    .addField("Reason:", reason, true)
+    .addField("Discharge Channel:", message.channel, true)
+    .addField("Time:", message.createdAt, true)
+    .setFooter("Prefix: ! | This bot is still in it's early phases | Go kill some HBC for me will ya?!", bot.user.avatarURL)
+    .setTimestamp();
+
+    let selectionproccess = message.guild.roles.find(`name`, `Selection Process`)
+    kickMemb.roles.forEach(r => kickMemb.removeRole(r.id))
+    kickMemb.addRole(selectionproccess.id)
+    kickMemb.setNickname(`[GD] ${kickMemb.user.username}`)
+    message.reply(`${message.author.username} has GD'ed ${kickMemb.user.username} for ${reason}.`)
+    let channel = message.guild.channels.find(`name`, `discharge-logs`)
+    channel.send(kickEmbed);
   }
 });
 
