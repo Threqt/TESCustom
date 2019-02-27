@@ -13,7 +13,7 @@ bot.on(`guildMemberAdd`, member => {
 
 bot.on("ready", async () => {
   console.log(`${bot.user.username} is online!`);
-  bot.user.setActivity("HGC sicko mode HBC", {
+  bot.user.setActivity("itself being DD'ed", {
     type: "WATCHING"
   });
 });
