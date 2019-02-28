@@ -121,10 +121,6 @@ bot.on("message", message => {
     if(!realrole){
       return message.reply("Please add a valid role").then(r => r.delete(5000))
     }
-    if(roleMember.highestRole.position < realrole.position){
-      return message.reply("Role too high to be added")
-    }
-    
     if (roleMember.highestRole.position > message.member.highestRole.position){
       return message.reply("Cannot role this person!").then(r => r.delete(5000));
     }
