@@ -23,8 +23,9 @@ bot.on(`guildMemberAdd`, async member => {
 
 bot.on("message", message => {
   let thing = '`'
+  message2 = message.join('')
   for (i = 0; i < profanaties.length; i++) {
-    if (message.content.toUpperCase() == profanaties[i].toUpperCase()) {
+    if (message2.content.toUpperCase() == profanaties[i].toUpperCase()) {
       message.reply("Don\'t say that!").then(r => r.delete(5000))
       message.delete()
       if(message){
@@ -32,7 +33,7 @@ bot.on("message", message => {
       }
       return;
     } else
-    if (message.content.toUpperCase() == `||` + profanaties[i].toUpperCase() + `||`) {
+    if (message2.content.toUpperCase() == `||` + profanaties[i].toUpperCase() + `||`) {
       message.reply("Don\'t say that! I can see through your spoilers.").then(r => r.delete(5000))
       message.delete()
       if(message){
@@ -40,7 +41,7 @@ bot.on("message", message => {
       }
       return;
     } else
-    if (message.content.toUpperCase() == `${thing}` + profanaties[i].toUpperCase() + `${thing}`) {
+    if (message2.content.toUpperCase() == `${thing}` + profanaties[i].toUpperCase() + `${thing}`) {
       message.reply("Don\'t say that! I can see through this too.").then(r => r.delete(5000))
       message.delete()
       if(message){
@@ -48,7 +49,7 @@ bot.on("message", message => {
       }
       return;
     } else
-    if (message.content.toUpperCase() == `${thing}${thing}${thing}` + profanaties[i].toUpperCase() + `${thing}${thing}${thing}`) {
+    if (message2.content.toUpperCase() == `${thing}${thing}${thing}` + profanaties[i].toUpperCase() + `${thing}${thing}${thing}`) {
       message.reply("Don\'t say that! I can see through this too.").then(r => r.delete(5000))
       message.delete()
       if(message){
