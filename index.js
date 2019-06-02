@@ -22,6 +22,14 @@ bot.on(`guildMemberAdd`, async member => {
 });
 
 bot.on("message", message => {
+
+  if (message.author.bot) return;
+  // This is where we'll put our code.
+  if (message.content.indexOf(config.prefix) !== 0) return;
+
+  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+  const cmd = args.shift().toLowerCase();
+
   let thing = '`'
   message2 = args.join('')
   for (i = 0; i < profanaties.length; i++) {
@@ -58,14 +66,6 @@ bot.on("message", message => {
       return;
     }
   }
-
-  if (message.author.bot) return;
-  // This is where we'll put our code.
-  if (message.content.indexOf(config.prefix) !== 0) return;
-
-  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
-  const cmd = args.shift().toLowerCase();
-
 
   if (cmd === `ping`) {
     return message.channel.send("pong");
