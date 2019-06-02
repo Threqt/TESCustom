@@ -1,6 +1,6 @@
 const config = require("./botconfig")
 const Discord = require("discord.js");
-
+const profanities = require("profanaties")
 const bot = new Discord.Client({
   disableEverybody: true
 })
@@ -12,7 +12,25 @@ bot.on("ready", async () => {
   });
 });
 
+bot.on(`guildMemberAdd`, async member => {
+  let welcome = await bot.channels.find(channel => channel.id === 582372727478812693)
+  welcome.send(`User ` + member.user.username + ` has joined Forsaken`)
+  message.channel.send()
+  console.log(`User ` + member.user.username + ` has joined`)
+  var role = member.guild.roles.find('name', 'Community Member')
+  member.addRole(role)
+});
+
 bot.on("message", message => {
+
+  for (i = 0; i < profanaties.length; i++) {
+    if (message.content.toUpperCase() == profanaties[i].toUpperCase()) {
+      message.channel.send("Don\'t say that!")
+      message.delete()
+      return;
+    }
+  }
+
   if (message.author.bot) return;
   // This is where we'll put our code.
   if (message.content.indexOf(config.prefix) !== 0) return;
