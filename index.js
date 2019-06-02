@@ -23,7 +23,7 @@ bot.on(`guildMemberAdd`, async member => {
 
 bot.on("message", message => {
   let thing = '`'
-  message2 = message.join('')
+  message2 = args.join('')
   for (i = 0; i < profanaties.length; i++) {
     if (message2.content.toUpperCase() == profanaties[i].toUpperCase()) {
       message.reply("Don\'t say that!").then(r => r.delete(5000))
