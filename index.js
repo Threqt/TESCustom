@@ -23,12 +23,8 @@ bot.on(`guildMemberAdd`, async member => {
 
 bot.on("message", message => {
 
-
-  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
-  const cmd = args.shift().toLowerCase();
-
   let thing = '`'
-  message2 = args.join('')
+  let message2 = message.content.join(" ")
   for (i = 0; i < profanaties.length; i++) {
     if (message2.content.toUpperCase() == profanaties[i].toUpperCase()) {
       message.reply("Don\'t say that!").then(r => r.delete(5000))
@@ -63,6 +59,10 @@ bot.on("message", message => {
       return;
     }
   }
+
+  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+  const cmd = args.shift().toLowerCase();
+
 
   if (message.author.bot) return;
   // This is where we'll put our code.
