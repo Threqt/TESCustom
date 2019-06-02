@@ -24,7 +24,7 @@ bot.on(`guildMemberAdd`, async member => {
 bot.on("message", message => {
 
   for (i = 0; i < profanaties.length; i++) {
-    if (message.content.toUpperCase() == profanaties[i].toUpperCase() || message.content.toUpperCase() = `||` + profanaties[i].toUpperCase() + `||`) {
+    if (message.content.toUpperCase() == profanaties[i].toUpperCase() || message.content.toUpperCase() = `||` + profanaties[i].toUpperCase() + "||" {
       message.reply("Don\'t say that!").then(r => r.delete(5000))
       message.delete()
       return;
