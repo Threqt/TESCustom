@@ -18,14 +18,14 @@ bot.on(`guildMemberAdd`, async member => {
   message.channel.send()
   console.log(`User ` + member.user.username + ` has joined`)
   var role = member.guild.roles.find('name', 'Community Member')
-  member.addRole(role)
+  member.addRole(role).catch(console.err)
 });
 
 bot.on("message", message => {
 
   for (i = 0; i < profanaties.length; i++) {
     if (message.content.toUpperCase() == profanaties[i].toUpperCase()) {
-      message.channel.send("Don\'t say that!")
+      message.reply("Don\'t say that!")
       message.delete()
       return;
     }
