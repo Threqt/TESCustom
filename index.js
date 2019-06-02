@@ -30,7 +30,7 @@ bot.on("message", message => {
   }
   console.log(str)
   for (i = 0; i < profanaties.length; i++) {
-    if (message2.content.toUpperCase() == profanaties[i].toUpperCase()) {
+    if (str.content.toUpperCase() == profanaties[i].toUpperCase()) {
       message.reply("Don\'t say that!").then(r => r.delete(5000))
       message.delete()
       if(message){
@@ -38,7 +38,7 @@ bot.on("message", message => {
       }
       return;
     } else
-    if (message2.content.toUpperCase() == `||` + profanaties[i].toUpperCase() + `||`) {
+    if (str.content.toUpperCase() == `||` + profanaties[i].toUpperCase() + `||`) {
       message.reply("Don\'t say that! I can see through your spoilers.").then(r => r.delete(5000))
       message.delete()
       if(message){
@@ -46,7 +46,7 @@ bot.on("message", message => {
       }
       return;
     } else
-    if (message2.content.toUpperCase() == `${thing}` + profanaties[i].toUpperCase() + `${thing}`) {
+    if (str.content.toUpperCase() == `${thing}` + profanaties[i].toUpperCase() + `${thing}`) {
       message.reply("Don\'t say that! I can see through this too.").then(r => r.delete(5000))
       message.delete()
       if(message){
@@ -54,7 +54,7 @@ bot.on("message", message => {
       }
       return;
     } else
-    if (message2.content.toUpperCase() == `${thing}${thing}${thing}` + profanaties[i].toUpperCase() + `${thing}${thing}${thing}`) {
+    if (str.content.toUpperCase() == `${thing}${thing}${thing}` + profanaties[i].toUpperCase() + `${thing}${thing}${thing}`) {
       message.reply("Don\'t say that! I can see through this too.").then(r => r.delete(5000))
       message.delete()
       if(message){
