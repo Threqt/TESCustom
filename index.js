@@ -1,6 +1,6 @@
 const config = require("./botconfig")
 const Discord = require("discord.js");
-const profanities = require("profanaties")
+const profanities = ["NIGGER", "NIGGA", "CUNT", "FUCK", "BITCH", "CNUT", "NIBBA", "NIBBER"]
 const bot = new Discord.Client({
   disableEverybody: true
 })
