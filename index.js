@@ -28,6 +28,11 @@ bot.on("message", message => {
       message.reply("Don\'t say that!").then(r => r.delete(5000))
       message.delete()
       return;
+    } else
+    if (message.content.toUpperCase() == `||` + profanaties[i].toUpperCase() + `||`) {
+      message.reply("Don\'t say that!").then(r => r.delete(5000))
+      message.delete()
+      return;
     }
   }
 
