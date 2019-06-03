@@ -23,46 +23,56 @@ bot.on(`guildMemberAdd`, async member => {
 
 bot.on("message", message => {
 
-  let thing = '`'
-  let str = message.content
-  while (str.indexOf(" ") !== -1) {
-    str.replace(" ", "")
-  }
-  console.log(str)
   for (i = 0; i < profanaties.length; i++) {
-    if (str.toUpperCase() == profanaties[i].toUpperCase()) {
+    if(message.content.toUpperCase().indexOf(profanaties[i].toUpperCase()) > -1){
       message.reply("Don\'t say that!").then(r => r.delete(5000))
-      message.delete()
-      if(message){
-        message.delete()
-      }
-      return;
-    } else
-    if (str.toUpperCase() == `||` + profanaties[i].toUpperCase() + `||`) {
-      message.reply("Don\'t say that! I can see through your spoilers.").then(r => r.delete(5000))
-      message.delete()
-      if(message){
-        message.delete()
-      }
-      return;
-    } else
-    if (str.toUpperCase() == `${thing}` + profanaties[i].toUpperCase() + `${thing}`) {
-      message.reply("Don\'t say that! I can see through this too.").then(r => r.delete(5000))
-      message.delete()
-      if(message){
-        message.delete()
-      }
-      return;
-    } else
-    if (str.toUpperCase() == `${thing}${thing}${thing}` + profanaties[i].toUpperCase() + `${thing}${thing}${thing}`) {
-      message.reply("Don\'t say that! I can see through this too.").then(r => r.delete(5000))
-      message.delete()
-      if(message){
-        message.delete()
-      }
-      return;
+          message.delete()
+          if(message){
+            message.delete()
+          }
+          return;
     }
   }
+  // let thing = '`'
+  // let str = message.content
+  // while (str.indexOf(" ") !== -1) {
+  //   str.replace(" ", "")
+  // }
+  // console.log(str)
+  // for (i = 0; i < profanaties.length; i++) {
+  //   if (str.toUpperCase() == profanaties[i].toUpperCase()) {
+  //     message.reply("Don\'t say that!").then(r => r.delete(5000))
+  //     message.delete()
+  //     if(message){
+  //       message.delete()
+  //     }
+  //     return;
+  //   } else
+  //   if (str.toUpperCase() == `||` + profanaties[i].toUpperCase() + `||`) {
+  //     message.reply("Don\'t say that! I can see through your spoilers.").then(r => r.delete(5000))
+  //     message.delete()
+  //     if(message){
+  //       message.delete()
+  //     }
+  //     return;
+  //   } else
+  //   if (str.toUpperCase() == `${thing}` + profanaties[i].toUpperCase() + `${thing}`) {
+  //     message.reply("Don\'t say that! I can see through this too.").then(r => r.delete(5000))
+  //     message.delete()
+  //     if(message){
+  //       message.delete()
+  //     }
+  //     return;
+  //   } else
+  //   if (str.toUpperCase() == `${thing}${thing}${thing}` + profanaties[i].toUpperCase() + `${thing}${thing}${thing}`) {
+  //     message.reply("Don\'t say that! I can see through this too.").then(r => r.delete(5000))
+  //     message.delete()
+  //     if(message){
+  //       message.delete()
+  //     }
+  //     return;
+  //   }
+  // }
 
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const cmd = args.shift().toLowerCase();
