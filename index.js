@@ -25,9 +25,9 @@ bot.on("messageUpdate", (oldMessage, newMessage) => {
   for (i = 0; i < profanaties.length; i++) {
     if(newMessage.content.toUpperCase().indexOf(profanaties[i].toUpperCase()) > -1){
       oldMessage.reply("Don\'t say that!").then(r => r.delete(5000))
-          message.delete()
+          oldMessage.delete()
           if(oldMessage){
-            message.delete()
+            oldMessage.delete()
           }
           return;
     }
