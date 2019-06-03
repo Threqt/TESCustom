@@ -21,6 +21,19 @@ bot.on(`guildMemberAdd`, async member => {
   member.addRole(role).catch(console.err)
 });
 
+bot.on("messageUpdate", (oldMessage, newMessage) => {
+  for (i = 0; i < profanaties.length; i++) {
+    if(newMessage.content.toUpperCase().indexOf(profanaties[i].toUpperCase()) > -1){
+      oldMessage.reply("Don\'t say that!").then(r => r.delete(5000))
+          message.delete()
+          if(oldMessage){
+            message.delete()
+          }
+          return;
+    }
+  }
+})
+
 bot.on("message", message => {
 
   for (i = 0; i < profanaties.length; i++) {
@@ -33,46 +46,6 @@ bot.on("message", message => {
           return;
     }
   }
-  // let thing = '`'
-  // let str = message.content
-  // while (str.indexOf(" ") !== -1) {
-  //   str.replace(" ", "")
-  // }
-  // console.log(str)
-  // for (i = 0; i < profanaties.length; i++) {
-  //   if (str.toUpperCase() == profanaties[i].toUpperCase()) {
-  //     message.reply("Don\'t say that!").then(r => r.delete(5000))
-  //     message.delete()
-  //     if(message){
-  //       message.delete()
-  //     }
-  //     return;
-  //   } else
-  //   if (str.toUpperCase() == `||` + profanaties[i].toUpperCase() + `||`) {
-  //     message.reply("Don\'t say that! I can see through your spoilers.").then(r => r.delete(5000))
-  //     message.delete()
-  //     if(message){
-  //       message.delete()
-  //     }
-  //     return;
-  //   } else
-  //   if (str.toUpperCase() == `${thing}` + profanaties[i].toUpperCase() + `${thing}`) {
-  //     message.reply("Don\'t say that! I can see through this too.").then(r => r.delete(5000))
-  //     message.delete()
-  //     if(message){
-  //       message.delete()
-  //     }
-  //     return;
-  //   } else
-  //   if (str.toUpperCase() == `${thing}${thing}${thing}` + profanaties[i].toUpperCase() + `${thing}${thing}${thing}`) {
-  //     message.reply("Don\'t say that! I can see through this too.").then(r => r.delete(5000))
-  //     message.delete()
-  //     if(message){
-  //       message.delete()
-  //     }
-  //     return;
-  //   }
-  // }
 
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const cmd = args.shift().toLowerCase();
