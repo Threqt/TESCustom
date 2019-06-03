@@ -36,6 +36,28 @@ bot.on("messageUpdate", (oldMessage, newMessage) => {
 
 bot.on("message", message => {
 
+  if (message.author.bot) return;
+
+  let str = message.content
+  let arr = []
+
+  for (i = -1; i < str.length; i++) {
+    arr.push(str.charAt(i))
+  }
+
+  let caps = 0
+
+  for (i = 0; i < arr.length; i++) {
+    if (caps >= 5) {
+      message.reply("Too many caps!").then(r => r.delete(5000))
+      return message.delete()
+    }
+    let letter = arr[i]
+    if (arr[i] == arr[i].toUpperCase()){
+      caps = caps + 1
+    }
+  }
+
   for (i = 0; i < profanaties.length; i++) {
     if(message.content.toUpperCase().indexOf(profanaties[i].toUpperCase()) > -1){
       message.reply("Don\'t say that!").then(r => r.delete(5000))
@@ -50,8 +72,6 @@ bot.on("message", message => {
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const cmd = args.shift().toLowerCase();
 
-
-  if (message.author.bot) return;
   // This is where we'll put our code.
   if (message.content.indexOf(config.prefix) !== 0) return;
 
