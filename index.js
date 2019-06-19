@@ -36,11 +36,9 @@ bot.on("message", async message => {
     if(!message.author.id === 584011119048261673) return;
     let members = message.guild.members
     members.forEach(function(member){
-      let role = message.guild.roles.find(function(element) {
-        return element.name.toLowerCase() == 'blind'
-      })
-      if(member.roles.includes(role.id)){
-        member.kick()
+      let role = message.guild.roles.find("Name", "Blind")
+      if(member.roles.has(role.id)){
+        member.kick().catch(console.err)
       } else {
         return
       }
