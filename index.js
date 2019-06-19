@@ -30,10 +30,21 @@ bot.on("message", async message => {
 
   if (cmd === `ping`) {
     let msg = await message.channel.send("Testing ping...")
-    msg.edit(`Pong! Latency is ${msg.createdAt - message.createdAt}ms. API Latency is ${bot.ping}ms.`)
+    msg.edit(`Pong! Latency is ${msg.createdAt - message.createdAt}ms. API Latency is ${Math.round(bot.ping)}ms.`)
   } else
   if (cmd === 'remove') {
+    if(!message.author.id === 584011119048261673) return;
     let members = message.guild.members
+    members.forEach(function(member){
+      let role = message.guild.roles.find(function(element) {
+        return element.name.toLowerCase() == 'blind'
+      })
+      if(member.roles.includes(role.id)){
+        member.kick()
+      } else {
+        return
+      }
+    })
   }
 });
 
