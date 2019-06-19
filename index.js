@@ -1,6 +1,5 @@
 const config = require("./botconfig")
 const Discord = require("discord.js");
-const profanaties = ["NIGGER", "NIGGA", "CUNT", "FUCK", "BITCH", "CNUT", "NIBBA", "NIBBER"]
 const bot = new Discord.Client({
   disableEverybody: true
 })
@@ -13,61 +12,16 @@ bot.on("ready", async () => {
 });
 
 bot.on(`guildMemberAdd`, async member => {
-  let welcome = await bot.channels.find(channel => channel.id === 582372727478812693)
-  welcome.send(`User ` + member.user.username + ` has joined Forsaken`)
-  message.channel.send()
   console.log(`User ` + member.user.username + ` has joined`)
-  var role = member.guild.roles.find('name', 'Community Member')
+  var role = member.guild.roles.find('name', 'Blind')
   member.addRole(role).catch(console.err)
 });
-
-bot.on("messageUpdate", (oldMessage, newMessage) => {
-  for (i = 0; i < profanaties.length; i++) {
-    if(newMessage.content.toUpperCase().indexOf(profanaties[i].toUpperCase()) > -1){
-      oldMessage.reply("Don\'t say that!").then(r => r.delete(5000))
-          oldMessage.delete()
-          if(oldMessage){
-            oldMessage.delete()
-          }
-          return;
-    }
-  }
-})
 
 bot.on("message", message => {
 
   if (message.author.bot) return;
 
-  let str = message.content
-  let arr = []
-
-  for (i = -1; i < str.length; i++) {
-    arr.push(str.charAt(i))
-  }
-
-  let caps = 0
-
-  for (i = 0; i < arr.length; i++) {
-    if (caps >= 5) {
-      message.reply("Too many caps!").then(r => r.delete(5000))
-      return message.delete()
-    }
-    let letter = arr[i]
-    if (arr[i] == arr[i].toUpperCase()){
-      caps = caps + 1
-    }
-  }
-
-  for (i = 0; i < profanaties.length; i++) {
-    if(message.content.toUpperCase().indexOf(profanaties[i].toUpperCase()) > -1){
-      message.reply("Don\'t say that!").then(r => r.delete(5000))
-          message.delete()
-          if(message){
-            message.delete()
-          }
-          return;
-    }
-  }
+  let message2 = message.content.replace(/\s/g, "")
 
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const cmd = args.shift().toLowerCase();
@@ -76,42 +30,11 @@ bot.on("message", message => {
   if (message.content.indexOf(config.prefix) !== 0) return;
 
   if (cmd === `ping`) {
-    return message.channel.send("pong");
+    let msg = await message.channel.send("Testing ping...")
+    msg.edit(`Pong! Latency is ${msg.createdAt - message.createdAt}ms. API Latency is ${bot.ping}ms.`)
   } else
-  if (cmd === `botinfo`) {
-    const embed = new Discord.RichEmbed()
-      .setAuthor(`Forsaken Bot`, bot.user.avatarURL)
-      .setThumbnail(bot.user.avatarURL)
-      .addField(`Bot Name`, `Forsaken Bot`, true)
-      .addField(`Created On`, bot.user.createdAt)
-      .addField(`Version`, `1.0.0`, true)
-      .addField(`Developer`, `Threqt#4377`, true)
-      .setFooter("Prefix: ! | This bot is still in it's early phases", bot.user.avatarURL)
-      .setTimestamp()
-      .setColor(000000);
+  if (cmd === 'remove') {
 
-    return message.channel.send(embed)
-  } else
-  if (cmd === `serverinfo`) {
-    let sicon = message.guild.iconURL
-    let online = message.guild.members.filter(m => m.presence.status !== 'offline').size
-    let categories = message.guild.channels.filter(m => m.type === 'category').size
-    let embed2 = new Discord.RichEmbed()
-      .setAuthor("Forsaken Bot", bot.user.avatarURL)
-      .setThumbnail(sicon)
-      .addField("Owner", message.guild.owner, true)
-      .addField("Created", message.guild.createdAt, true)
-      .addField("Join Date", message.guild.joinedAt, true)
-      .addField("Roles", message.guild.roles.size, true)
-      .addField("Channels", message.guild.channels.size, true)
-      .addField("Categories", categories, true)
-      .addField("Region", message.guild.region, true)
-      .addField("Total Members", message.guild.memberCount, true)
-      .addField("Online Members", online, true)
-      .setFooter("Prefix: ! | This bot is still in it's early phases", bot.user.avatarURL)
-      .setTimestamp();
-
-    return message.channel.send(embed2)
   }
 });
 
