@@ -40,7 +40,7 @@ bot.on("message", async message => {
       if(member.roles.has(role.id)){
         member.kick().catch(console.err)
       } else {
-        return
+        return console.log("Skipped!")
       }
     })
   }
