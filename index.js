@@ -39,8 +39,9 @@ bot.on("message", async message => {
       let role = message.guild.roles.find("name", "Blind")
       if(member.roles.has(role.id)){
         member.kick().catch(console.err)
+        console.log(`Kicked ${member.user.username}`)
       } else {
-        return console.log("Skipped!")
+        console.log("Skipped!")
       }
     })
   }
