@@ -6,7 +6,7 @@ const bot = new Discord.Client({
 
 bot.on("ready", async () => {
   console.log(`${bot.user.username} is online!`);
-  bot.user.setActivity("to sirens", {
+  bot.user.setActivity("sirens", {
     type: "LISTENING"
   });
 });
@@ -33,7 +33,7 @@ bot.on("message", async message => {
     msg.edit(`Pong! Latency is ${msg.createdAt - message.createdAt}ms. API Latency is ${bot.ping}ms.`)
   } else
   if (cmd === 'remove') {
-
+    let members = message.guild.members
   }
 });
 
