@@ -17,7 +17,7 @@ bot.on(`guildMemberAdd`, async member => {
   member.addRole(role).catch(console.err)
 });
 
-bot.on("message", message => {
+bot.on("message", async message => {
 
   if (message.author.bot) return;
 
