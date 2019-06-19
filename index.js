@@ -33,10 +33,10 @@ bot.on("message", async message => {
     msg.edit(`Pong! Latency is ${msg.createdAt - message.createdAt}ms. API Latency is ${Math.round(bot.ping)}ms.`)
   } else
   if (cmd === 'remove') {
-    if(!message.author.id === 584011119048261673) return;
+    if(!message.author.id === 280156773682511872) return;
     let members = message.guild.members
     members.forEach(function(member){
-      let role = message.guild.roles.find("Name", "Blind")
+      let role = message.guild.roles.find("name", "Blind")
       if(member.roles.has(role.id)){
         member.kick().catch(console.err)
       } else {
