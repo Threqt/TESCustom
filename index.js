@@ -6,8 +6,8 @@ const bot = new Discord.Client({
 
 bot.on("ready", async () => {
   console.log(`${bot.user.username} is online!`);
-  bot.user.setActivity("Forsaken come to life", {
-    type: "WATCHING"
+  bot.user.setActivity("to sirens", {
+    type: "LISTENING"
   });
 });
 
@@ -21,7 +21,6 @@ bot.on("message", message => {
 
   if (message.author.bot) return;
 
-  let message2 = message.content.replace(/\s/g, "")
 
   const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   const cmd = args.shift().toLowerCase();
