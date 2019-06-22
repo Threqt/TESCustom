@@ -19,12 +19,6 @@ bot.on(`guildMemberAdd`, async member => {
 
 bot.on("message", async message => {
 
-  setInterval(function() {
-    if(interval2 == true){
-      message.channel.send("Mohammed was a wife beater")
-    }
-  }, 10000)
-
   if (message.author.bot) return;
 
 
@@ -128,13 +122,6 @@ bot.on("message", async message => {
         }
       }
     })
-  } else
-  if (cmd === `passage`) {
-    if (interval2 == false) {
-      interval2 = true
-    } else {
-      interval2 = false
-    }
   }
 });
 
