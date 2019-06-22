@@ -9,6 +9,7 @@
   "author": "threqt",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^11.4.2"
+    "discord.js": "^11.4.2",
+    "quran": "0.0.9"
   }
 }
